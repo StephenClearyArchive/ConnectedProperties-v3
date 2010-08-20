@@ -115,7 +115,7 @@ namespace Nito.Weakness.ObjectTracking
             {
                 // The target is already GC'ed, so just invoke the action and return.
                 action(this);
-                return action;
+                return null;
             }
 
             // At this point, we know the target is alive (and we keep it alive until the end of the method).
