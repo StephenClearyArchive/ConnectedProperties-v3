@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttachedProperties", "AttachedProperties\AttachedProperties.csproj", "{A2223402-841E-460F-9071-B6B6E78E8507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70AC4B94-780D-4E70-80A7-A5CE36A47794}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Nito.AttachedProperties.vsmdi = Nito.AttachedProperties.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Nito.AttachedProperties.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CodeAnalysis|Any CPU = CodeAnalysis|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2223402-841E-460F-9071-B6B6E78E8507}.CodeAnalysis|Any CPU.ActiveCfg = CodeAnalysis|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.CodeAnalysis|Any CPU.Build.0 = CodeAnalysis|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.CodeAnalysis|Any CPU.ActiveCfg = Release|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.CodeAnalysis|Any CPU.Build.0 = Release|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
