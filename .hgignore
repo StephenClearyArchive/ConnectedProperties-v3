@@ -1,6 +1,7 @@
-glob:Source/AttachedProperties/bin
-glob:Source/AttachedProperties/obj
 glob:*.suo
 glob:Source/TestResults
 glob:Source/UnitTests/bin
 glob:Source/UnitTests/obj
+glob:Source/ConnectedProperties/bin
+glob:Source/ConnectedProperties/obj
+glob:Source/_ReSharper.*

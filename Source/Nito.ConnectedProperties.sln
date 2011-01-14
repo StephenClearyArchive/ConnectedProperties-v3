@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttachedProperties", "AttachedProperties\AttachedProperties.csproj", "{A2223402-841E-460F-9071-B6B6E78E8507}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectedProperties", "AttachedProperties\ConnectedProperties.csproj", "{A2223402-841E-460F-9071-B6B6E78E8507}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70AC4B94-780D-4E70-80A7-A5CE36A47794}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
-		Nito.AttachedProperties.vsmdi = Nito.AttachedProperties.vsmdi
+		Nito.ConnectedProperties.vsmdi = Nito.ConnectedProperties.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Nito.AttachedProperties.vsmdi
+		CategoryFile = Nito.ConnectedProperties.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeAnalysis|Any CPU = CodeAnalysis|Any CPU

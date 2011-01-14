@@ -9,7 +9,7 @@ using System.Text;
 using System.Reflection;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// Various extension methods, only used internally.

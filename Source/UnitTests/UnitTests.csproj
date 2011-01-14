@@ -45,14 +45,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImplicitAttachedPropertiesUnitTests.cs" />
+    <Compile Include="ImplicitConnectedPropertiesUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExplicitAttachedPropertiesUnitTests.cs" />
+    <Compile Include="ExplicitConnectedPropertiesUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttachedProperties\AttachedProperties.csproj">
+    <ProjectReference Include="..\AttachedProperties\ConnectedProperties.csproj">
       <Project>{A2223402-841E-460F-9071-B6B6E78E8507}</Project>
-      <Name>AttachedProperties</Name>
+      <Name>ConnectedProperties</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

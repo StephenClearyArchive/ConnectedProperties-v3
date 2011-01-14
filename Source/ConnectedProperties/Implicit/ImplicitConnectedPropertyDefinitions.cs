@@ -1,4 +1,4 @@
-﻿// <copyright file="ImplicitAttachedPropertyDefinitions.cs" company="Nito Programs">
+﻿// <copyright file="ImplicitConnectedPropertyDefinitions.cs" company="Nito Programs">
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
@@ -9,12 +9,12 @@ using System.Text;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties.Implicit
+namespace Nito.ConnectedProperties.Implicit
 {
     /// <summary>
     /// Provides access to implicit attached property definitions for a specific object.
     /// </summary>
-    public sealed class ImplicitAttachedPropertyDefinitions
+    public sealed class ImplicitConnectedPropertyDefinitions
     {
         /// <summary>
         /// The carrier object for the attached properties.
@@ -22,22 +22,22 @@ namespace Nito.AttachedProperties.Implicit
         private readonly object carrier;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImplicitAttachedPropertyDefinitions"/> class for a specific object.
+        /// Initializes a new instance of the <see cref="ImplicitConnectedPropertyDefinitions"/> class for a specific object.
         /// </summary>
         /// <param name="carrier">The carrier object for the attached properties. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have attached properties.</exception>
-        public ImplicitAttachedPropertyDefinitions(object carrier)
+        public ImplicitConnectedPropertyDefinitions(object carrier)
             : this(carrier, skipCarrierVerification:false)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImplicitAttachedPropertyDefinitions"/> class for a specific object, optionally verifying that the object is a valid carrier.
+        /// Initializes a new instance of the <see cref="ImplicitConnectedPropertyDefinitions"/> class for a specific object, optionally verifying that the object is a valid carrier.
         /// </summary>
         /// <param name="carrier">The carrier object for the attached properties. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <param name="skipCarrierVerification">Whether to skip verification of the carrier object.</param>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have attached properties.</exception>
-        internal ImplicitAttachedPropertyDefinitions(object carrier, bool skipCarrierVerification)
+        internal ImplicitConnectedPropertyDefinitions(object carrier, bool skipCarrierVerification)
         {
             Contract.Requires(carrier != null);
             if (!skipCarrierVerification)
@@ -64,7 +64,7 @@ namespace Nito.AttachedProperties.Implicit
         /// <typeparam name="TValue">The attached property type.</typeparam>
         /// <typeparam name="TTag">A "tag" type used to distinguish different implicit attached properties.</typeparam>
         /// <returns>The attached property accessor.</returns>
-        public IAttachedPropertyAccessor<TValue> Property<TValue, TTag>()
+        public IConnectedPropertyAccessor<TValue> Property<TValue, TTag>()
         {
             return Definition<TValue, TTag>.AttachedProperty(this.carrier);
         }
@@ -94,10 +94,10 @@ namespace Nito.AttachedProperties.Implicit
             /// </summary>
             /// <param name="carrier">The carrier object for which to retrieve the attached property. This object must be reference-equatable. May not be <c>null</c>.</param>
             /// <returns>The attached property accessor.</returns>
-            public static IAttachedPropertyAccessor<TValue> AttachedProperty(object carrier)
+            public static IConnectedPropertyAccessor<TValue> AttachedProperty(object carrier)
             {
                 Contract.Requires(carrier != null);
-                return new AttachedPropertyAccessor<object, TValue>(store, carrier);
+                return new ConnectedPropertyAccessor<object, TValue>(store, carrier);
             }
         }
     }

@@ -9,14 +9,14 @@ using System.Text;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// A single attached property definition.
     /// </summary>
     /// <typeparam name="TCarrier">The type of carrier objects to which the property may be attached. This must be a reference type. This may be <see cref="Object"/> to allow this attached property to attach to any type of object.</typeparam>
     /// <typeparam name="TValue">The attached property type.</typeparam>
-    public sealed class AttachedPropertyDefinition<TCarrier, TValue>
+    public sealed class ConnectedPropertyDefinition<TCarrier, TValue>
         where TCarrier : class
     {
         /// <summary>
@@ -25,9 +25,9 @@ namespace Nito.AttachedProperties
         private readonly IPropertyStore<TCarrier, TValue> store;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AttachedPropertyDefinition&lt;TCarrier, TValue&gt;"/> class.
+        /// Initializes a new instance of the <see cref="ConnectedPropertyDefinition&lt;TCarrier, TValue&gt;"/> class.
         /// </summary>
-        public AttachedPropertyDefinition()
+        public ConnectedPropertyDefinition()
         {
             this.store = PropertyStoreUtil.Create<TCarrier, TValue>();
         }
@@ -43,12 +43,12 @@ namespace Nito.AttachedProperties
         /// </summary>
         /// <param name="carrier">The carrier object for which to retrieve the attached property accessor. May not be <c>null</c>.</param>
         /// <returns>The attached property accessor, or <c>null</c> if <paramref name="carrier"/> may not have attached properties.</returns>
-        public IAttachedPropertyAccessor<TValue> TryGetAttachedProperty(TCarrier carrier)
+        public IConnectedPropertyAccessor<TValue> TryGetAttachedProperty(TCarrier carrier)
         {
             Contract.Requires(carrier != null);
             if (!PropertyStoreUtil.TryVerify(carrier))
                 return null;
-            return new AttachedPropertyAccessor<TCarrier, TValue>(this.store, carrier);
+            return new ConnectedPropertyAccessor<TCarrier, TValue>(this.store, carrier);
         }
 
         /// <summary>
@@ -57,12 +57,12 @@ namespace Nito.AttachedProperties
         /// <param name="carrier">The carrier object for which to retrieve the attached property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The attached property accessor.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have attached properties.</exception>
-        public IAttachedPropertyAccessor<TValue> GetAttachedProperty(TCarrier carrier)
+        public IConnectedPropertyAccessor<TValue> GetAttachedProperty(TCarrier carrier)
         {
             Contract.Requires(carrier != null);
-            Contract.Ensures(Contract.Result<IAttachedPropertyAccessor<TValue>>() != null);
+            Contract.Ensures(Contract.Result<IConnectedPropertyAccessor<TValue>>() != null);
             PropertyStoreUtil.Verify(carrier);
-            return new AttachedPropertyAccessor<TCarrier, TValue>(this.store, carrier);
+            return new ConnectedPropertyAccessor<TCarrier, TValue>(this.store, carrier);
         }
     }
 }

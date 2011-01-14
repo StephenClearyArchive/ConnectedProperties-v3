@@ -1,4 +1,4 @@
-﻿// <copyright file="PropertyStoreForValueTypes.cs" company="Nito Programs">
+﻿// <copyright file="PropertyStoreForReferenceTypes.cs" company="Nito Programs">
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
@@ -9,27 +9,28 @@ using System.Text;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
-    /// A wrapper around <see cref="ConditionalWeakTable{TKey, TValue}"/> providing a level of indirection for <typeparamref name="TValue"/>. The attached property type may be a value type or reference type.
+    /// Simple wrapper around <see cref="ConditionalWeakTable{TKey, TValue}"/>. The attached property type must be a reference type.
     /// </summary>
     /// <typeparam name="TKey">The type of objects to which the property may be attached. This must be a reference type.</typeparam>
-    /// <typeparam name="TValue">The attached property type.</typeparam>
-    internal sealed class PropertyStoreForValueTypes<TKey, TValue> : IPropertyStore<TKey, TValue>
+    /// <typeparam name="TValue">The attached property type. This must be a reference type.</typeparam>
+    internal sealed class PropertyStoreForReferenceTypes<TKey, TValue> : IPropertyStore<TKey, TValue>
         where TKey : class
+        where TValue : class
     {
         /// <summary>
         /// The underlying property store.
         /// </summary>
-        private readonly ConditionalWeakTable<TKey, ValueHolder<TValue>> store;
+        private readonly ConditionalWeakTable<TKey, TValue> store;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyStoreForValueTypes&lt;TKey, TValue&gt;"/> class.
+        /// Initializes a new instance of the <see cref="PropertyStoreForReferenceTypes&lt;TKey, TValue&gt;"/> class.
         /// </summary>
-        public PropertyStoreForValueTypes()
+        public PropertyStoreForReferenceTypes()
         {
-            this.store = new ConditionalWeakTable<TKey, ValueHolder<TValue>>();
+            this.store = new ConditionalWeakTable<TKey, TValue>();
         }
 
         [ContractInvariantMethod]
@@ -45,7 +46,7 @@ namespace Nito.AttachedProperties
         /// <param name="value">The property value to attach.</param>
         public void Add(TKey key, TValue value)
         {
-            this.store.Add(key, new ValueHolder<TValue> { Value = value });
+            this.store.Add(key, value);
         }
 
         /// <summary>
@@ -66,11 +67,7 @@ namespace Nito.AttachedProperties
         /// <returns><c>true</c> if the property was attached; <c>false</c> if the property was detached.</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
-            ValueHolder<TValue> holder;
-            var ret = this.store.TryGetValue(key, out holder);
-            Contract.Assume(!ret || holder != null);
-            value = ret ? holder.Value : default(TValue);
-            return ret;
+            return this.store.TryGetValue(key, out value);
         }
 
         /// <summary>
@@ -81,9 +78,7 @@ namespace Nito.AttachedProperties
         /// <returns>The value of the attached property.</returns>
         public TValue GetValue(TKey key, Func<TValue> createCallback)
         {
-            var ret = this.store.GetValue(key, _ => new ValueHolder<TValue> { Value = createCallback() });
-            Contract.Assume(ret != null);
-            return ret.Value;
+            return this.store.GetValue(key, _ => createCallback());
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// A reference type that holds a value.

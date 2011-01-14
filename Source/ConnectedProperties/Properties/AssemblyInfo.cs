@@ -6,9 +6,9 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Attached property support for .NET 4.0 Client Profile")]
+[assembly: AssemblyTitle("Connected property support for .NET 4.0 Client Profile")]
 [assembly: AssemblyCompany("Nito Programs")]
-[assembly: AssemblyProduct("Nito.AttachedProperties")]
+[assembly: AssemblyProduct("Nito.ConnectedProperties")]
 [assembly: AssemblyCopyright("Copyright © Nito Programs 2011")]
 
 [assembly: ComVisible(false)]
