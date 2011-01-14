@@ -1,5 +1,6 @@
-glob:Source/Nito.Weakness.5.1.ReSharper.user
-glob:Source/Nito.Weakness.suo
-glob:Source/_ReSharper.Nito.Weakness
-glob:Source/bin
-glob:Source/obj
+glob:Source/AttachedProperties/bin
+glob:Source/AttachedProperties/obj
+glob:*.suo
+glob:Source/TestResults
+glob:Source/UnitTests/bin
+glob:Source/UnitTests/obj
