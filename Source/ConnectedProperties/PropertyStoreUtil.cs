@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// Helper methods for working with the property store.

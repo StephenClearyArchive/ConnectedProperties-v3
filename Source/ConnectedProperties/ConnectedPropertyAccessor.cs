@@ -9,14 +9,14 @@ using System.Text;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// An accessor for a property that may be attached to a carrier object at runtime. The attached property is "detached" if it is not attached; this is different than having an attached property value of <c>null</c>. All members are threadsafe.
     /// </summary>
     /// <typeparam name="TValue">The attached property type.</typeparam>
-    [ContractClass(typeof(AttachedPropertyAccessorContracts<>))]
-    public interface IAttachedPropertyAccessor<TValue>
+    [ContractClass(typeof(ConnectedPropertyAccessorContracts<>))]
+    public interface IConnectedPropertyAccessor<TValue>
     {
         /// <summary>
         /// Attempts to detach the attached property. Returns <c>true</c> if the attached property was detached by this method; <c>false</c> if the attached property was already detached.
@@ -52,8 +52,8 @@ namespace Nito.AttachedProperties
         TValue GetOrAttach(Func<TValue> attachCallback);
     }
 
-    [ContractClassFor(typeof(IAttachedPropertyAccessor<>))]
-    internal abstract class AttachedPropertyAccessorContracts<TValue> : IAttachedPropertyAccessor<TValue>
+    [ContractClassFor(typeof(IConnectedPropertyAccessor<>))]
+    internal abstract class ConnectedPropertyAccessorContracts<TValue> : IConnectedPropertyAccessor<TValue>
     {
         public bool TryDetach()
         {
@@ -87,7 +87,7 @@ namespace Nito.AttachedProperties
     /// </summary>
     /// <typeparam name="TKey">The type of carrier objects to which the property may be attached. This must be a reference type.</typeparam>
     /// <typeparam name="TValue">The attached property type.</typeparam>
-    internal sealed class AttachedPropertyAccessor<TKey, TValue> : IAttachedPropertyAccessor<TValue>
+    internal sealed class ConnectedPropertyAccessor<TKey, TValue> : IConnectedPropertyAccessor<TValue>
         where TKey : class
     {
         /// <summary>
@@ -101,11 +101,11 @@ namespace Nito.AttachedProperties
         private readonly TKey key;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AttachedPropertyAccessor&lt;TKey, TValue&gt;"/> class.
+        /// Initializes a new instance of the <see cref="ConnectedPropertyAccessor&lt;TKey, TValue&gt;"/> class.
         /// </summary>
         /// <param name="store">The property store. May not be <c>null</c>.</param>
         /// <param name="key">The carrier object for this attached property. May not be <c>null</c>.</param>
-        public AttachedPropertyAccessor(IPropertyStore<TKey, TValue> store, TKey key)
+        public ConnectedPropertyAccessor(IPropertyStore<TKey, TValue> store, TKey key)
         {
             Contract.Requires(store != null);
             Contract.Requires(key != null);

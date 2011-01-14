@@ -13,7 +13,7 @@ using Nito.AttachedProperties.Implicit;
 namespace UnitTests
 {
     [TestClass]
-    public class ImplicitAttachedPropertiesUnitTests
+    public class ImplicitConnectedPropertiesUnitTests
     {
         private struct tag1 { }
         private struct tag2 { }

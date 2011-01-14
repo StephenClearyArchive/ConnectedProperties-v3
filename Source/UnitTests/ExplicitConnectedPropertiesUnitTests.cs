@@ -12,7 +12,7 @@ using Nito.AttachedProperties;
 namespace UnitTests
 {
     [TestClass]
-    public class ExplicitAttachedPropertiesUnitTests
+    public class ExplicitConnectedPropertiesUnitTests
     {
         [TestMethod]
         public void AttachedPropertiesAreInitiallyDetached()

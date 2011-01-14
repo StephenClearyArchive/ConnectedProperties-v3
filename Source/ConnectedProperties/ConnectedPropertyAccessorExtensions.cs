@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics.Contracts;
 
-namespace Nito.AttachedProperties
+namespace Nito.ConnectedProperties
 {
     /// <summary>
     /// Provides convenience methods for attached property accessors.
     /// </summary>
-    public static class AttachedPropertyAccessorExtensions
+    public static class ConnectedPropertyAccessorExtensions
     {
         /// <summary>
         /// Detaches the attached property, throwing an exception if the attached property was already detached.
         /// </summary>
         /// <param name="property">The attached property. Must not be <c>null</c>.</param>
-        public static void Detach<TValue>(this IAttachedPropertyAccessor<TValue> property)
+        public static void Detach<TValue>(this IConnectedPropertyAccessor<TValue> property)
         {
             Contract.Requires(property != null);
             if (!property.TryDetach())
@@ -31,7 +31,7 @@ namespace Nito.AttachedProperties
         /// </summary>
         /// <param name="property">The attached property. Must not be <c>null</c>.</param>
         /// <returns>The value of the attached property.</returns>
-        public static TValue Get<TValue>(this IAttachedPropertyAccessor<TValue> property)
+        public static TValue Get<TValue>(this IConnectedPropertyAccessor<TValue> property)
         {
             Contract.Requires(property != null);
             TValue ret;
@@ -45,7 +45,7 @@ namespace Nito.AttachedProperties
         /// </summary>
         /// <param name="property">The attached property. Must not be <c>null</c>.</param>
         /// <param name="value">The value to set.</param>
-        public static void Attach<TValue>(this IAttachedPropertyAccessor<TValue> property, TValue value)
+        public static void Attach<TValue>(this IConnectedPropertyAccessor<TValue> property, TValue value)
         {
             Contract.Requires(property != null);
             if (!property.TryAttach(value))
@@ -58,7 +58,7 @@ namespace Nito.AttachedProperties
         /// <param name="property">The attached property. Must not be <c>null</c>.</param>
         /// <param name="attachValue">The new value of the attached property, if it is detached.</param>
         /// <returns>The value of the attached property.</returns>
-        public static TValue GetOrAttach<TValue>(this IAttachedPropertyAccessor<TValue> property, TValue attachValue)
+        public static TValue GetOrAttach<TValue>(this IConnectedPropertyAccessor<TValue> property, TValue attachValue)
         {
             Contract.Requires(property != null);
             return property.GetOrAttach(() => attachValue);
