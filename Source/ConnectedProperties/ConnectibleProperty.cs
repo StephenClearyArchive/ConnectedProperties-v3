@@ -37,9 +37,9 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
-        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
+        /// <param name="createCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
-        TValue GetOrConnect(Func<TValue> connectCallback);
+        TValue GetOrCreate(Func<TValue> createCallback);
     }
 
     [ContractClassFor(typeof(IConnectibleProperty<>))]
@@ -61,9 +61,9 @@ namespace Nito.ConnectedProperties
             return false;
         }
 
-        public TValue GetOrConnect(Func<TValue> connectCallback)
+        public TValue GetOrCreate(Func<TValue> createCallback)
         {
-            Contract.Requires(connectCallback != null);
+            Contract.Requires(createCallback != null);
             return default(TValue);
         }
     }
@@ -148,11 +148,11 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
-        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
+        /// <param name="createCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
-        public TValue GetOrConnect(Func<TValue> connectCallback)
+        public TValue GetOrCreate(Func<TValue> createCallback)
         {
-            return this.store.GetValue(this.key, connectCallback);
+            return this.store.GetValue(this.key, createCallback);
         }
     }
 }
