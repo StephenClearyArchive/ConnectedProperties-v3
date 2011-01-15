@@ -229,5 +229,15 @@ namespace UnitTests
             Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>().Get());
             Assert.AreEqual(17, carrier.GetConnectedProperty<object, tag1>().Get());
         }
+
+        [TestMethod]
+        public void DynamicIsTheDefaultValueType()
+        {
+            object carrier = new object();
+            carrier.GetConnectedProperty<tag1>().Set(13);
+            carrier.GetConnectedProperty<dynamic, tag1>().Set(17);
+            Assert.AreEqual(17, carrier.GetConnectedProperty<tag1>().Get());
+            Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>().Get());
+        }
     }
 }
