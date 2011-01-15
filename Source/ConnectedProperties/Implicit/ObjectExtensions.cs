@@ -41,5 +41,31 @@ namespace Nito.ConnectedProperties.Implicit
                 return null;
             return new ImplicitPropertyConnector(carrier, skipCarrierVerification:true).Property<TValue, TTag>();
         }
+
+        /// <summary>
+        /// Gets a dynamic connectible property for a specific carrier object, throwing <see cref="InvalidOperationException"/> if the specified object cannot have connected properties.
+        /// </summary>
+        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
+        /// <returns>The connectible property.</returns>
+        /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
+        public static IConnectibleProperty<dynamic> GetConnectedProperty<TTag>(this object carrier)
+        {
+            Contract.Requires(carrier != null);
+            Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
+            return carrier.GetConnectedProperty<dynamic, TTag>();
+        }
+
+        /// <summary>
+        /// Gets a dynamic connectible property for a specific carrier object, returning <c>null</c> if the specified object cannot have connected properties.
+        /// </summary>
+        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
+        /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
+        public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier)
+        {
+            Contract.Requires(carrier != null);
+            return carrier.TryGetConnectedProperty<dynamic, TTag>();
+        }
     }
 }

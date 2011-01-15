@@ -67,6 +67,16 @@ namespace Nito.ConnectedProperties.Implicit
         }
 
         /// <summary>
+        /// Gets a dynamic connectible property on this carrier object.
+        /// </summary>
+        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
+        /// <returns>The connectible property.</returns>
+        public IConnectibleProperty<dynamic> Property<TTag>()
+        {
+            return Definition<dynamic, TTag>.Property(this.carrier);
+        }
+
+        /// <summary>
         /// A nested static class which creates a property store for each implicit connectible property as necessary.
         /// </summary>
         /// <typeparam name="TValue">The property type.</typeparam>
