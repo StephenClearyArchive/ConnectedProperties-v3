@@ -40,6 +40,18 @@ namespace Nito.ConnectedProperties
         }
 
         /// <summary>
+        /// Gets the value of the property, throwing an exception if the property was disconnected.
+        /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
+        /// <returns>The value of the property.</returns>
+        public static dynamic GetAsDynamic<TValue>(this IConnectibleProperty<TValue> property)
+        {
+            Contract.Requires(property != null);
+            return property.Get();
+        }
+
+        /// <summary>
         /// Sets the value of the property, throwing an exception if the property was already connected.
         /// </summary>
         /// <typeparam name="TValue">The property type.</typeparam>
@@ -63,6 +75,33 @@ namespace Nito.ConnectedProperties
         {
             Contract.Requires(property != null);
             return property.GetOrCreate(() => connectValue);
+        }
+
+        /// <summary>
+        /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
+        /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
+        /// <param name="connectValue">The new value of the property, if it is disconnected.</param>
+        /// <returns>The value of the property.</returns>
+        public static dynamic GetOrConnectAsDynamic<TValue>(this IConnectibleProperty<TValue> property, TValue connectValue)
+        {
+            Contract.Requires(property != null);
+            return property.GetOrConnect(connectValue);
+        }
+
+        /// <summary>
+        /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
+        /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
+        /// <param name="createCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
+        /// <returns>The value of the property.</returns>
+        public static dynamic GetOrCreateAsDynamic<TValue>(this IConnectibleProperty<TValue> property, Func<TValue> createCallback)
+        {
+            Contract.Requires(property != null);
+            Contract.Requires(createCallback != null);
+            return property.GetOrCreate(createCallback);
         }
 
         /// <summary>
