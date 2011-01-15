@@ -25,6 +25,7 @@ namespace Nito.ConnectedProperties.Implicit
         public ImplicitPropertyConnector(object carrier)
             : this(carrier, skipCarrierVerification:false)
         {
+            Contract.Requires(carrier != null);
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Nito.ConnectedProperties.Implicit
             }
             else
             {
-                Contract.Assert(PropertyStoreUtil.TryVerify(carrier));
+                Contract.Assume(PropertyStoreUtil.TryVerify(carrier));
             }
 
             this.carrier = carrier;

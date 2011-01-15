@@ -73,6 +73,7 @@ namespace Nito.ConnectedProperties
         /// <param name="value">The value to set.</param>
         public static void Set<TValue>(this IConnectibleProperty<TValue> property, TValue value)
         {
+            Contract.Requires(property != null);
             while (true)
             {
                 if (property.TryConnect(value))
