@@ -1,4 +1,4 @@
-﻿// <copyright file="ImplicitPropertyConnector.cs" company="Nito Programs">
+﻿// <copyright file="ImplicitPropertyConnectors.cs" company="Nito Programs">
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace Nito.ConnectedProperties.Implicit
     /// <summary>
     /// Allows access to various connectible properties on a specific carrier object.
     /// </summary>
-    public sealed class ImplicitPropertyConnector
+    public sealed class ImplicitPropertyConnectors
     {
         /// <summary>
         /// The carrier object.
@@ -18,23 +18,23 @@ namespace Nito.ConnectedProperties.Implicit
         private readonly object carrier;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImplicitPropertyConnector"/> class for a specific object.
+        /// Initializes a new instance of the <see cref="ImplicitPropertyConnectors"/> class for a specific object.
         /// </summary>
         /// <param name="carrier">The carrier object. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connectible properties.</exception>
-        public ImplicitPropertyConnector(object carrier)
+        public ImplicitPropertyConnectors(object carrier)
             : this(carrier, skipCarrierVerification:false)
         {
             Contract.Requires(carrier != null);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImplicitPropertyConnector"/> class for a specific object, optionally verifying that the object is a valid carrier.
+        /// Initializes a new instance of the <see cref="ImplicitPropertyConnectors"/> class for a specific object, optionally verifying that the object is a valid carrier.
         /// </summary>
         /// <param name="carrier">The carrier object. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <param name="skipCarrierVerification">Whether to skip verification of the carrier object.</param>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connectible properties.</exception>
-        internal ImplicitPropertyConnector(object carrier, bool skipCarrierVerification)
+        internal ImplicitPropertyConnectors(object carrier, bool skipCarrierVerification)
         {
             Contract.Requires(carrier != null);
             if (!skipCarrierVerification)
