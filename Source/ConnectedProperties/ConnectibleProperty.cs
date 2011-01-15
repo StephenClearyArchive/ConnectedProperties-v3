@@ -37,7 +37,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
-        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>.</param>
+        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
         TValue GetOrConnect(Func<TValue> connectCallback);
     }
@@ -148,7 +148,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
-        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>.</param>
+        /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
         public TValue GetOrConnect(Func<TValue> connectCallback)
         {

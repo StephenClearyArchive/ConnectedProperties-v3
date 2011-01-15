@@ -74,7 +74,7 @@ namespace Nito.ConnectedProperties
         /// Retrieves the value of the property, creating a new value if there is no property connected.
         /// </summary>
         /// <param name="key">The carrier object on which to look up the value of the property. May not be <c>null</c>.</param>
-        /// <param name="createCallback">The delegate which is invoked to create the value of the property if there is no property connected. May not be <c>null</c>.</param>
+        /// <param name="createCallback">The delegate which is invoked to create the value of the property if there is no property connected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
         public TValue GetValue(TKey key, Func<TValue> createCallback)
         {
