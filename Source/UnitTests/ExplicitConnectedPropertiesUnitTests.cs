@@ -242,5 +242,25 @@ namespace UnitTests
             var propertyDefinition = new PropertyConnector<object, int>();
             Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier));
         }
+
+        private interface IMyInterface { }
+        private class MyClass : IMyInterface { }
+        private struct MyStruct : IMyInterface { }
+
+        [TestMethod]
+        public void MyClassCanBeCarrierObjectsForConnectorOfInterfaceType()
+        {
+            MyClass carrier = new MyClass();
+            var propertyDefinition = new PropertyConnector<IMyInterface, int>();
+            Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier));
+        }
+
+        [TestMethod]
+        public void MyStructCannotBeCarrierObjectsForConnectorOfInterfaceType()
+        {
+            MyStruct carrier = new MyStruct();
+            var propertyDefinition = new PropertyConnector<IMyInterface, int>();
+            Assert.IsNull(propertyDefinition.TryGetProperty(carrier));
+        }
     }
 }
