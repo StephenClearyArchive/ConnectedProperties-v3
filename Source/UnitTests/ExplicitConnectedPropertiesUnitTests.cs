@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nito.ConnectedProperties;
+using Nito.ConnectedProperties.Explicit;
 
 namespace UnitTests
 {

@@ -125,7 +125,7 @@
   <ItemGroup>
     <Compile Include="ConnectibleProperty.cs" />
     <Compile Include="ConnectiblePropertyExtensions.cs" />
-    <Compile Include="PropertyConnector.cs" />
+    <Compile Include="Explicit\PropertyConnector.cs" />
     <Compile Include="Implicit\ObjectExtensions.cs" />
     <Compile Include="Implicit\ImplicitPropertyConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

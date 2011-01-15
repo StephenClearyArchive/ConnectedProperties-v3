@@ -2,15 +2,12 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties
 {
+    using System;
+    using System.Runtime.CompilerServices;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// A wrapper around <see cref="ConditionalWeakTable{TKey, TValue}"/> providing a level of indirection for <typeparamref name="TValue"/>. The property type may be a value type or reference type.
     /// </summary>

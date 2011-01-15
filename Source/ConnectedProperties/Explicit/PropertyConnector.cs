@@ -2,15 +2,11 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
-
-namespace Nito.ConnectedProperties
+namespace Nito.ConnectedProperties.Explicit
 {
+    using System;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// A property connector. Allows access to a connectible property on various carrier objects.
     /// </summary>
