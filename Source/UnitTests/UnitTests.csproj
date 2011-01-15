@@ -50,7 +50,7 @@
     <Compile Include="ExplicitConnectedPropertiesUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttachedProperties\ConnectedProperties.csproj">
+    <ProjectReference Include="..\ConnectedProperties\ConnectedProperties.csproj">
       <Project>{A2223402-841E-460F-9071-B6B6E78E8507}</Project>
       <Name>ConnectedProperties</Name>
     </ProjectReference>

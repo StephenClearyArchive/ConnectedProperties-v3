@@ -11,38 +11,38 @@ using System.Diagnostics.Contracts;
 namespace Nito.ConnectedProperties.Implicit
 {
     /// <summary>
-    /// Extensions to allow accessing implicit attached properties from any reference object.
+    /// Extensions to allow accessing implicit connected properties from any reference object.
     /// </summary>
     public static class ObjectExtensions
     {
         /// <summary>
-        /// Gets the implicit attached property definition for a specific carrier object, throwing <see cref="InvalidOperationException"/> if the specified object cannot have attached properties.
+        /// Gets a connectible property for a specific carrier object, throwing <see cref="InvalidOperationException"/> if the specified object cannot have connected properties.
         /// </summary>
-        /// <typeparam name="TValue">The attached property type.</typeparam>
-        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit attached properties.</typeparam>
-        /// <param name="carrier">The carrier object for the attached properties. This object must be reference-equatable. May not be <c>null</c>.</param>
-        /// <returns>The attached property accessor.</returns>
-        /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have attached properties.</exception>
-        public static IConnectedPropertyAccessor<TValue> GetAttachedProperty<TValue, TTag>(this object carrier)
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
+        /// <returns>The connectible property.</returns>
+        /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
+        public static IConnectibleProperty<TValue> GetConnectedProperty<TValue, TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
-            Contract.Ensures(Contract.Result<IConnectedPropertyAccessor<TValue>>() != null);
-            return new ImplicitConnectedPropertyDefinitions(carrier).Property<TValue, TTag>();
+            Contract.Ensures(Contract.Result<IConnectibleProperty<TValue>>() != null);
+            return new ImplicitPropertyConnector(carrier).Property<TValue, TTag>();
         }
 
         /// <summary>
-        /// Gets the implicit attached property definition for a specific carrier object, returning <c>null</c> if the specified object cannot have attached properties.
+        /// Gets a connectible property for a specific carrier object, returning <c>null</c> if the specified object cannot have connected properties.
         /// </summary>
-        /// <typeparam name="TValue">The attached property type.</typeparam>
-        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit attached properties.</typeparam>
-        /// <param name="carrier">The carrier object for the attached properties. This object must be reference-equatable. May not be <c>null</c>.</param>
-        /// <returns>The attached property accessor, or <c>null</c> if <paramref name="carrier"/> may not have attached properties.</returns>
-        public static IConnectedPropertyAccessor<TValue> TryGetAttachedProperty<TValue, TTag>(this object carrier)
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
+        /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
+        public static IConnectibleProperty<TValue> TryGetConnectedProperty<TValue, TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
             if (!PropertyStoreUtil.TryVerify(carrier))
                 return null;
-            return new ImplicitConnectedPropertyDefinitions(carrier, skipCarrierVerification:true).Property<TValue, TTag>();
+            return new ImplicitPropertyConnector(carrier, skipCarrierVerification:true).Property<TValue, TTag>();
         }
     }
 }
