@@ -2,14 +2,11 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties.Implicit
 {
+    using System;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// Extensions to allow accessing implicit connected properties from any reference object.
     /// </summary>

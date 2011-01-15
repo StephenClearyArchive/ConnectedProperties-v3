@@ -2,15 +2,12 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties
 {
+    using System;
+    using System.Runtime.CompilerServices;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// Simple wrapper around <see cref="ConditionalWeakTable{TKey, TValue}"/>. The property type must be a reference type.
     /// </summary>

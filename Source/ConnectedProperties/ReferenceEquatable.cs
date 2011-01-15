@@ -2,15 +2,13 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// Various extension methods, only used internally.
     /// </summary>

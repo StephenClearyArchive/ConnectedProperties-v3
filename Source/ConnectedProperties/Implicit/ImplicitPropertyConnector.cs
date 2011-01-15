@@ -2,15 +2,11 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties.Implicit
 {
+    using System;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// Allows access to various connectible properties on a specific carrier object.
     /// </summary>

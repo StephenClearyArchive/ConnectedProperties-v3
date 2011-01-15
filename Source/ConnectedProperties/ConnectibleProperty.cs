@@ -2,15 +2,11 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties
 {
+    using System;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// A property that may be connected to a carrier object at runtime. The property is either connected or disconnected. A disconnected property is different than a connected property value of <c>null</c>. All members are threadsafe.
     /// </summary>

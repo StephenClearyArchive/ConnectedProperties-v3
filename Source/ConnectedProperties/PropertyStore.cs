@@ -2,14 +2,11 @@
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics.Contracts;
-
 namespace Nito.ConnectedProperties
 {
+    using System;
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// A minimal wrapper around <see cref="System.Runtime.CompilerServices.ConditionalWeakTable{TKey,TValue}"/>. This interface is exposed by property store implementations and consumed by <see cref="IConnectibleProperty{TValue}"/> implementations.
     /// </summary>
