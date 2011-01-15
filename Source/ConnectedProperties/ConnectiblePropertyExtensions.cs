@@ -15,6 +15,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Disconnects the property, throwing an exception if the property was already disconnected.
         /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
         /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
         public static void Disconnect<TValue>(this IConnectibleProperty<TValue> property)
         {
@@ -26,6 +27,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, throwing an exception if the property was disconnected.
         /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
         /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
         /// <returns>The value of the property.</returns>
         public static TValue Get<TValue>(this IConnectibleProperty<TValue> property)
@@ -40,6 +42,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Sets the value of the property, throwing an exception if the property was already connected.
         /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
         /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
         /// <param name="value">The value to set.</param>
         public static void Connect<TValue>(this IConnectibleProperty<TValue> property, TValue value)
@@ -52,6 +55,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
         /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
         /// <param name="connectValue">The new value of the property, if it is disconnected.</param>
         /// <returns>The value of the property.</returns>
@@ -59,6 +63,22 @@ namespace Nito.ConnectedProperties
         {
             Contract.Requires(property != null);
             return property.GetOrConnect(() => connectValue);
+        }
+
+        /// <summary>
+        /// Sets the value of the property, overwriting any existing value.
+        /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
+        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
+        /// <param name="value">The value to set.</param>
+        public static void Set<TValue>(this IConnectibleProperty<TValue> property, TValue value)
+        {
+            while (true)
+            {
+                if (property.TryConnect(value))
+                    return;
+                property.TryDisconnect();
+            }
         }
     }
 }

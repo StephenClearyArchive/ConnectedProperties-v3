@@ -35,12 +35,6 @@ namespace Nito.ConnectedProperties
         bool TryConnect(TValue value);
 
         /// <summary>
-        /// Sets the value of the property, overwriting any existing value.
-        /// </summary>
-        /// <param name="value">The value to set.</param>
-        void Set(TValue value);
-
-        /// <summary>
         /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
         /// </summary>
         /// <param name="connectCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>.</param>
@@ -65,10 +59,6 @@ namespace Nito.ConnectedProperties
         public bool TryConnect(TValue value)
         {
             return false;
-        }
-
-        public void Set(TValue value)
-        {
         }
 
         public TValue GetOrConnect(Func<TValue> connectCallback)
@@ -152,20 +142,6 @@ namespace Nito.ConnectedProperties
             {
                 // Vexing exception.
                 return false;
-            }
-        }
-
-        /// <summary>
-        /// Sets the value of the property, overwriting any existing value.
-        /// </summary>
-        /// <param name="value">The value to set.</param>
-        public void Set(TValue value)
-        {
-            while (true)
-            {
-                if (this.TryConnect(value))
-                    return;
-                this.TryDisconnect();
             }
         }
 
