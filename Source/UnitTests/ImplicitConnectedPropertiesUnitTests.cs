@@ -219,5 +219,15 @@ namespace UnitTests
             object carrier = new object();
             Assert.IsNotNull(carrier.TryGetConnectedProperty<int, tag1>());
         }
+
+        [TestMethod]
+        public void DynamicIsSameAsObject()
+        {
+            object carrier = new object();
+            carrier.GetConnectedProperty<dynamic, tag1>().Set(13);
+            carrier.GetConnectedProperty<object, tag1>().Set(17);
+            Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>().Get());
+            Assert.AreEqual(17, carrier.GetConnectedProperty<object, tag1>().Get());
+        }
     }
 }
