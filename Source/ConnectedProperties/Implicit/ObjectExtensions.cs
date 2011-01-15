@@ -24,7 +24,7 @@ namespace Nito.ConnectedProperties.Implicit
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<TValue>>() != null);
-            return new ImplicitPropertyConnector(carrier).Property<TValue, TTag>();
+            return new ImplicitPropertyConnectors(carrier).Property<TValue, TTag>();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Nito.ConnectedProperties.Implicit
             Contract.Requires(carrier != null);
             if (!PropertyStoreUtil.TryVerify(carrier))
                 return null;
-            return new ImplicitPropertyConnector(carrier, skipCarrierVerification:true).Property<TValue, TTag>();
+            return new ImplicitPropertyConnectors(carrier, skipCarrierVerification:true).Property<TValue, TTag>();
         }
 
         /// <summary>
