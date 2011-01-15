@@ -262,5 +262,21 @@ namespace UnitTests
             var propertyDefinition = new PropertyConnector<IMyInterface, int>();
             Assert.IsNull(propertyDefinition.TryGetProperty(carrier));
         }
+
+        [TestMethod]
+        public void FluentCreation_DefaultCarrierAndValue_IsSameTypeAs_ObjectAndDynamic()
+        {
+            var propertyDefinition1 = PropertyConnector.Create();
+            var propertyDefinition2 = new PropertyConnector<object, dynamic>();
+            Assert.AreEqual(propertyDefinition1.GetType(), propertyDefinition2.GetType());
+        }
+
+        [TestMethod]
+        public void FluentCreation_SpecifiedCarrierAndDefaultValue_IsSameTypeAs_SpecifiedCarrierAndDynamic()
+        {
+            var propertyDefinition1 = PropertyConnector.WithCarrierTypeOf<IMyInterface>.Create();
+            var propertyDefinition2 = new PropertyConnector<IMyInterface, dynamic>();
+            Assert.AreEqual(propertyDefinition1.GetType(), propertyDefinition2.GetType());
+        }
     }
 }

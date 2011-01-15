@@ -101,4 +101,85 @@ namespace Nito.ConnectedProperties.Explicit
             return new ConnectibleProperty<TCarrier, TValue>(this.store, carrier);
         }
     }
+
+    /// <summary>
+    /// A fluent interface for determining the type of property connector to use. The default carrier type is <see cref="Object"/>, and the default value type is <c>dynamic</c>.
+    /// </summary>
+    public static class PropertyConnector
+    {
+        /// <summary>
+        /// Creates a property connector for a dynamic property that can use any type of carrier object.
+        /// </summary>
+        /// <returns>The property connector.</returns>
+        public static IPropertyConnector<object, dynamic> Create()
+        {
+            return new PropertyConnector<object, dynamic>();
+        }
+
+        /// <summary>
+        /// Specifies the type of carrier object. The default is <see cref="Object"/> if this is not specified.
+        /// </summary>
+        /// <typeparam name="TCarrier">The type of carrier objects to which the property may be connected. This must be a reference type. This may be <see cref="Object"/> to allow this property to connect to any type of object.</typeparam>
+        public static class WithCarrierTypeOf<TCarrier>
+            where TCarrier : class
+        {
+            /// <summary>
+            /// Creates a property connector for a dynamic property, for the specified type of carrier object.
+            /// </summary>
+            /// <returns>The property connector.</returns>
+            public static IPropertyConnector<TCarrier, dynamic> Create()
+            {
+                return new PropertyConnector<TCarrier, dynamic>();
+            }
+
+            /// <summary>
+            /// Specifies the type of the connected property. The default is <c>dynamic</c> if this is not specified.
+            /// </summary>
+            /// <typeparam name="TValue">The property type.</typeparam>
+            public static class WithPropertyTypeOf<TValue>
+            {
+                /// <summary>
+                /// Creates a property connector of the specified type, for the specified type of carrier object.
+                /// </summary>
+                /// <returns>The property connector.</returns>
+                public static IPropertyConnector<TCarrier, TValue> Create()
+                {
+                    return new PropertyConnector<TCarrier, TValue>();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specifies the type of the connected property. The default is <c>dynamic</c> if this is not specified.
+        /// </summary>
+        /// <typeparam name="TValue">The property type.</typeparam>
+        public static class WithPropertyTypeOf<TValue>
+        {
+            /// <summary>
+            /// Creates a property connector of the specified type, for any type of carrier object.
+            /// </summary>
+            /// <returns>The property connector.</returns>
+            public static IPropertyConnector<object, TValue> Create()
+            {
+                return new PropertyConnector<object, TValue>();
+            }
+
+            /// <summary>
+            /// Specifies the type of carrier object. The default is <see cref="Object"/> if this is not specified.
+            /// </summary>
+            /// <typeparam name="TCarrier">The type of carrier objects to which the property may be connected. This must be a reference type. This may be <see cref="Object"/> to allow this property to connect to any type of object.</typeparam>
+            public static class WithCarrierTypeOf<TCarrier>
+                where TCarrier : class
+            {
+                /// <summary>
+                /// Creates a property connector of the specified type, for the specified type of carrier object.
+                /// </summary>
+                /// <returns>The property connector.</returns>
+                public static IPropertyConnector<TCarrier, TValue> Create()
+                {
+                    return new PropertyConnector<TCarrier, TValue>();
+                }
+            }
+        }
+    }
 }
