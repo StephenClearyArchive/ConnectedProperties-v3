@@ -62,7 +62,7 @@ namespace Nito.ConnectedProperties
         public static TValue GetOrConnect<TValue>(this IConnectibleProperty<TValue> property, TValue connectValue)
         {
             Contract.Requires(property != null);
-            return property.GetOrConnect(() => connectValue);
+            return property.GetOrCreate(() => connectValue);
         }
 
         /// <summary>
