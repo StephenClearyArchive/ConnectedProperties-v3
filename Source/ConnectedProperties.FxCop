@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="10.0" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">$(FxCopDir)\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded, Good, Noise" NewOnly="False" />
+   <Report Status="Active, Good, Noise" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/ConnectedProperties/bin/Release/ConnectedProperties.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityTransparencyRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="10.0">
+  <Namespaces>
+   <Namespace Name="Nito.ConnectedProperties">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue>
+       <Item>Nito.ConnectedProperties</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="1" />
+       </User>
+      </Notes>
+     </Message>
+     <Message Id="Nito" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue Name="Namespace">
+       <Item>Nito</Item>
+       <Item>Nito.ConnectedProperties</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="4" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="Nito.ConnectedProperties.Explicit">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue>
+       <Item>Nito.ConnectedProperties.Explicit</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="0" />
+       </User>
+      </Notes>
+     </Message>
+     <Message Id="Nito" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue Name="Namespace">
+       <Item>Nito</Item>
+       <Item>Nito.ConnectedProperties.Explicit</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="3" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="Nito.ConnectedProperties.Implicit">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue>
+       <Item>Nito.ConnectedProperties.Implicit</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="2" />
+       </User>
+      </Notes>
+     </Message>
+     <Message Id="Nito" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2011-01-15 18:06:17Z">
+      <Issue Name="Namespace">
+       <Item>Nito</Item>
+       <Item>Nito.ConnectedProperties.Implicit</Item>
+      </Issue>
+      <Notes>
+       <User Name="stephen">
+        <Note Id="5" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/ConnectedProperties/bin/Release/ConnectedProperties.dll">
+    <Modules>
+     <Module Name="connectedproperties.dll">
+      <Namespaces>
+       <Namespace Name="Nito.ConnectedProperties">
+        <Types>
+         <Type Name="ConnectibleProperty`2">
+          <Members>
+           <Member Name="#ObjectInvariant()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Excluded" Created="2011-01-15 18:06:17Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'ConnectibleProperty&lt;TKey, TValue&gt;.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="8" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PropertyStoreForReferenceTypes`2">
+          <Members>
+           <Member Name="#ObjectInvariant()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Excluded" Created="2011-01-15 18:06:17Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'PropertyStoreForReferenceTypes&lt;TKey, TValue&gt;.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="9" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PropertyStoreForValueTypes`2">
+          <Members>
+           <Member Name="#ObjectInvariant()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Excluded" Created="2011-01-15 18:06:17Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'PropertyStoreForValueTypes&lt;TKey, TValue&gt;.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="7" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Nito.ConnectedProperties.Explicit">
+        <Types>
+         <Type Name="PropertyConnector`2">
+          <Members>
+           <Member Name="#ObjectInvariant()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Excluded" Created="2011-01-15 18:06:17Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'PropertyConnector&lt;TCarrier, TValue&gt;.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="6" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Nito.ConnectedProperties.Implicit">
+        <Types>
+         <Type Name="ImplicitPropertyConnectors">
+          <Members>
+           <Member Name="#ObjectInvariant()">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ImplicitPropertyConnectors.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="11" />
+               </User>
+              </Notes>
+             </Message>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Excluded" Created="2011-01-15 18:06:17Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'ImplicitPropertyConnectors.ObjectInvariant()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="10" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Property`1()">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ImplicitPropertyConnectors.Property&lt;TTag&gt;()'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="12" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Property`2()">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ImplicitPropertyConnectors.Property&lt;TValue, TTag&gt;()'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="13" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ImplicitPropertyConnectors+Definition`2">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ImplicitPropertyConnectors.Definition&lt;TValue, TTag&gt;'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="14" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ObjectExtensions">
+          <Members>
+           <Member Name="#GetConnectedProperty`1(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ObjectExtensions.GetConnectedProperty&lt;TTag&gt;(this object)'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="13" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetConnectedProperty`2(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ObjectExtensions.GetConnectedProperty&lt;TValue, TTag&gt;(this object)'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="13" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#TryGetConnectedProperty`1(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ObjectExtensions.TryGetConnectedProperty&lt;TTag&gt;(this object)'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="13" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#TryGetConnectedProperty`2(System.Object)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Status="Excluded" Created="2011-01-15 18:06:17Z">
+              <Issue>
+               <Item>'ObjectExtensions.TryGetConnectedProperty&lt;TValue, TTag&gt;(this object)'</Item>
+               <Item>'TTag'</Item>
+              </Issue>
+              <Notes>
+               <User Name="stephen">
+                <Note Id="13" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="stephen">
+    <Note Id="0" Modified="2011-01-15 18:09:00Z">There are few public types in this assembly by design.</Note>
+    <Note Id="1" Modified="2011-01-15 18:09:05Z">There are few public types in this assembly by design.</Note>
+    <Note Id="2" Modified="2011-01-15 18:09:08Z">There are few public types in this assembly by design.</Note>
+    <Note Id="3" Modified="2011-01-15 18:09:30Z">"Nito" is the correct spelling.</Note>
+    <Note Id="4" Modified="2011-01-15 18:09:35Z">"Nito" is the correct spelling.</Note>
+    <Note Id="5" Modified="2011-01-15 18:09:38Z">"Nito" is the correct spelling.</Note>
+    <Note Id="6" Modified="2011-01-15 18:10:20Z">ObjectInvariant may not be static, since it does access "this" (it has its code removed by the Code Contracts rewriter).</Note>
+    <Note Id="7" Modified="2011-01-15 18:10:24Z">ObjectInvariant may not be static, since it does access "this" (it has its code removed by the Code Contracts rewriter).</Note>
+    <Note Id="8" Modified="2011-01-15 18:10:27Z">ObjectInvariant may not be static, since it does access "this" (it has its code removed by the Code Contracts rewriter).</Note>
+    <Note Id="9" Modified="2011-01-15 18:10:31Z">ObjectInvariant may not be static, since it does access "this" (it has its code removed by the Code Contracts rewriter).</Note>
+    <Note Id="10" Modified="2011-01-15 18:10:34Z">ObjectInvariant may not be static, since it does access "this" (it has its code removed by the Code Contracts rewriter).</Note>
+    <Note Id="11" Modified="2011-01-15 18:11:06Z">ObjectInvariant is used by Code Contracts.</Note>
+    <Note Id="12" Modified="2011-01-15 18:11:19Z">TTag must be specified, by design.</Note>
+    <Note Id="13" Modified="2011-01-15 18:11:33Z">TTag must be specified, by design.</Note>
+    <Note Id="14" Modified="2011-01-15 18:12:16Z">The static constructor is used to control the time of static field initialization. In this case, we want to prevent eager static field initialization.</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004">
+    <Resolution Name="Default">Consider a design where {0} doesn't require explicit type parameter {1} in any call to it.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810">
+    <Resolution Name="Default">Initialize all static fields in {0} when those fields are declared and remove the explicit static constructor.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>
