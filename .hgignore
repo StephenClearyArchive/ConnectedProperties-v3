@@ -5,3 +5,4 @@ glob:Source/UnitTests/obj
 glob:Source/ConnectedProperties/bin
 glob:Source/ConnectedProperties/obj
 glob:Source/_ReSharper.*
+glob:*.user

@@ -123,11 +123,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectedPropertyAccessor.cs" />
-    <Compile Include="ConnectedPropertyAccessorExtensions.cs" />
-    <Compile Include="ConnectedPropertyDefinition.cs" />
+    <Compile Include="ConnectibleProperty.cs" />
+    <Compile Include="ConnectiblePropertyExtensions.cs" />
+    <Compile Include="PropertyConnector.cs" />
     <Compile Include="Implicit\ObjectExtensions.cs" />
-    <Compile Include="Implicit\ImplicitConnectedPropertyDefinitions.cs" />
+    <Compile Include="Implicit\ImplicitPropertyConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyStore.cs" />
     <Compile Include="PropertyStoreForReferenceTypes.cs" />
