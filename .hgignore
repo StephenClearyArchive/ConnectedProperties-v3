@@ -6,3 +6,7 @@ glob:Source/ConnectedProperties/bin
 glob:Source/ConnectedProperties/obj
 glob:Source/_ReSharper.*
 glob:*.user
+glob:Util/*.pdb
+glob:Util/*.vshost.*
+glob:Util/Source/FixXmlDocumentation/bin
+glob:Util/Source/FixXmlDocumentation/obj
