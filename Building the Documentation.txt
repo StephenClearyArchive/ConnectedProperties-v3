@@ -1,0 +1,6 @@
+After the following projects have been installed:
+- Sandcastle, June 2010 Release (Version 2.6.1062.1) or newer
+- Sandcastle Styles, June 2010 Patch Rev 1 or newer
+- Sandcastle Help File Builder v1.9.1.0 or newer
+
+Do *not* apply the code contract Sandcastle modifications under All Programs -> Microsoft Code Contracts -> Sandcastle. Code contracts are already handled by Sandcastle Styles.
