@@ -27,7 +27,6 @@ namespace Nito.ConnectedProperties
         /// <param name="value">Receives the value of the property, if this method returns <c>true</c>.</param>
         /// <returns><c>true</c> if the property was returned in <paramref name="value"/>; <c>false</c> if the property was disconnected.</returns>
         /// <seealso cref="ConnectiblePropertyExtensions.Get{TValue}"/>
-        /// <seealso cref="ConnectiblePropertyExtensions.GetAsDynamic{TValue}"/>
         /// <seealso cref="GetOrCreate"/>
         /// <seealso cref="ConnectiblePropertyExtensions.GetOrConnect{TValue}"/>
         bool TryGet(out TValue value);
@@ -47,7 +46,6 @@ namespace Nito.ConnectedProperties
         /// <param name="createCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
         /// <returns>The value of the property.</returns>
         /// <seealso cref="ConnectiblePropertyExtensions.Get{TValue}"/>
-        /// <seealso cref="ConnectiblePropertyExtensions.GetOrCreateAsDynamic{TValue}"/>
         /// <seealso cref="ConnectiblePropertyExtensions.GetOrConnect{TValue}"/>
         TValue GetOrCreate(Func<TValue> createCallback);
     }

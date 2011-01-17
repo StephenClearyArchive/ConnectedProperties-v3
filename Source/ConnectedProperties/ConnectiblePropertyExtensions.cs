@@ -32,7 +32,6 @@ namespace Nito.ConnectedProperties
         /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
         /// <returns>The value of the property.</returns>
         /// <seealso cref="IConnectibleProperty{TValue}.TryGet"/>
-        /// <seealso cref="GetAsDynamic{TValue}"/>
         /// <seealso cref="IConnectibleProperty{TValue}.GetOrCreate"/>
         /// <seealso cref="GetOrConnect{TValue}"/>
         public static TValue Get<TValue>(this IConnectibleProperty<TValue> property)
@@ -42,21 +41,6 @@ namespace Nito.ConnectedProperties
             if (!property.TryGet(out ret))
                 throw new InvalidOperationException("Connectible property is disconnected.");
             return ret;
-        }
-
-        /// <summary>
-        /// Gets the value of the property, throwing an exception if the property was disconnected.
-        /// </summary>
-        /// <typeparam name="TValue">The property type.</typeparam>
-        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
-        /// <returns>The value of the property.</returns>
-        /// <seealso cref="Get{TValue}"/>
-        /// <seealso cref="GetOrCreateAsDynamic{TValue}"/>
-        /// <seealso cref="GetOrConnectAsDynamic{TValue}"/>
-        public static dynamic GetAsDynamic<TValue>(this IConnectibleProperty<TValue> property)
-        {
-            Contract.Requires(property != null);
-            return property.Get();
         }
 
         /// <summary>
@@ -82,45 +66,11 @@ namespace Nito.ConnectedProperties
         /// <param name="connectValue">The new value of the property, if it is disconnected.</param>
         /// <returns>The value of the property.</returns>
         /// <seealso cref="Get{TValue}"/>
-        /// <seealso cref="GetOrConnectAsDynamic{TValue}"/>
         /// <seealso cref="IConnectibleProperty{TValue}.GetOrCreate"/>
         public static TValue GetOrConnect<TValue>(this IConnectibleProperty<TValue> property, TValue connectValue)
         {
             Contract.Requires(property != null);
             return property.GetOrCreate(() => connectValue);
-        }
-
-        /// <summary>
-        /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
-        /// </summary>
-        /// <typeparam name="TValue">The property type.</typeparam>
-        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
-        /// <param name="connectValue">The new value of the property, if it is disconnected.</param>
-        /// <returns>The value of the property.</returns>
-        /// <seealso cref="GetAsDynamic{TValue}"/>
-        /// <seealso cref="GetOrConnect{TValue}"/>
-        /// <seealso cref="GetOrCreateAsDynamic{TValue}"/>
-        public static dynamic GetOrConnectAsDynamic<TValue>(this IConnectibleProperty<TValue> property, TValue connectValue)
-        {
-            Contract.Requires(property != null);
-            return property.GetOrConnect(connectValue);
-        }
-
-        /// <summary>
-        /// Gets the value of the property, if it is connected; otherwise, sets the value of the property and returns the new value.
-        /// </summary>
-        /// <typeparam name="TValue">The property type.</typeparam>
-        /// <param name="property">The connectible property. Must not be <c>null</c>.</param>
-        /// <param name="createCallback">The delegate invoked to create the value of the property, if it is disconnected. May not be <c>null</c>. If there is a multithreaded race condition, each thread's delegate may be invoked, but all values except one will be discarded.</param>
-        /// <returns>The value of the property.</returns>
-        /// <seealso cref="GetAsDynamic{TValue}"/>
-        /// <seealso cref="IConnectibleProperty{TValue}.GetOrCreate"/>
-        /// <seealso cref="GetOrConnectAsDynamic{TValue}"/>
-        public static dynamic GetOrCreateAsDynamic<TValue>(this IConnectibleProperty<TValue> property, Func<TValue> createCallback)
-        {
-            Contract.Requires(property != null);
-            Contract.Requires(createCallback != null);
-            return property.GetOrCreate(createCallback);
         }
 
         /// <summary>
