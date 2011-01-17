@@ -260,32 +260,5 @@ namespace UnitTests
             Assert.AreEqual(17, properties.Property<tag1>().Get());
             Assert.AreEqual(17, properties.Property<dynamic, tag1>().Get());
         }
-
-        [TestMethod]
-        public void GetAsDynamicResturnsSameObjectAsGet()
-        {
-            object carrier = new object();
-            object data = new object();
-            carrier.GetConnectedProperty<tag1>().Set(data);
-            Assert.AreEqual(carrier.GetConnectedProperty<tag1>().Get(), carrier.GetConnectedProperty<tag1>().GetAsDynamic());
-        }
-
-        [TestMethod]
-        public void GetOrCreateAsDynamicResturnsSameObjectAsGetOrCreate()
-        {
-            object carrier = new object();
-            object data = new object();
-            carrier.GetConnectedProperty<tag1>().Set(data);
-            Assert.AreEqual(carrier.GetConnectedProperty<tag1>().GetOrCreate(() => new object()), carrier.GetConnectedProperty<tag1>().GetOrCreateAsDynamic(() => new object()));
-        }
-
-        [TestMethod]
-        public void GetOrConnectAsDynamicResturnsSameObjectAsGetOrConnect()
-        {
-            object carrier = new object();
-            object data = new object();
-            carrier.GetConnectedProperty<tag1>().Set(data);
-            Assert.AreEqual(carrier.GetConnectedProperty<tag1>().GetOrConnect(new object()), carrier.GetConnectedProperty<tag1>().GetOrConnectAsDynamic(new object()));
-        }
     }
 }
