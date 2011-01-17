@@ -10,3 +10,4 @@ glob:Util/*.pdb
 glob:Util/*.vshost.*
 glob:Util/Source/FixXmlDocumentation/bin
 glob:Util/Source/FixXmlDocumentation/obj
+glob:Help/*/Help
