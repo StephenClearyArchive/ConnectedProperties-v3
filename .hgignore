@@ -11,3 +11,5 @@ glob:Util/*.vshost.*
 glob:Util/Source/FixXmlDocumentation/bin
 glob:Util/Source/FixXmlDocumentation/obj
 glob:Help/*/Help
+glob:Source/ConnectedProperties (SL)/Bin
+glob:Source/ConnectedProperties (SL)/obj

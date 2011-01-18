@@ -1,4 +1,4 @@
-﻿// <copyright file="ImplicitPropertyConnectors.cs" company="Nito Programs">
+﻿// <copyright file="ImplicitPropertyConnector.cs" company="Nito Programs">
 //     Copyright (c) 2011 Nito Programs.
 // </copyright>
 

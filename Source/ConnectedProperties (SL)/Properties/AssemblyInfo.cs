@@ -4,4 +4,4 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("Connected property support for .NET 4.0 Client Profile")]
+[assembly: AssemblyTitle("Connected property support for Silverlight 4")]
