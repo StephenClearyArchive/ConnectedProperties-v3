@@ -5,7 +5,6 @@
 namespace Nito.ConnectedProperties
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Diagnostics.Contracts;
 
     /// <summary>
@@ -13,10 +12,12 @@ namespace Nito.ConnectedProperties
     /// </summary>
     internal static class PropertyStoreUtil
     {
+#if !SILVERLIGHT
         /// <summary>
         /// A cache of valid carrier types.
         /// </summary>
-        internal static ConcurrentDictionary<Type, bool> validCarrierTypes = new ConcurrentDictionary<Type, bool>();
+        internal static System.Collections.Concurrent.ConcurrentDictionary<Type, bool> validCarrierTypes = new System.Collections.Concurrent.ConcurrentDictionary<Type, bool>();
+#endif
 
         /// <summary>
         /// Verifies the carrier object: it must be a reference type that uses reference equality. Returns <c>true</c> if the carrier object may have connected properties; <c>false</c> if the carrier object may not have connected properties.
@@ -26,7 +27,12 @@ namespace Nito.ConnectedProperties
         public static bool TryVerify(object carrier)
         {
             Contract.Requires(carrier != null);
+
+#if !SILVERLIGHT
             return validCarrierTypes.GetOrAdd(carrier.GetType(), type => type.IsReferenceEquatable());
+#else
+            return carrier.GetType().IsReferenceEquatable();
+#endif
         }
 
         /// <summary>
