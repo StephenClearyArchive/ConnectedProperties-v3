@@ -16,7 +16,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Client CC\bin\Debug\Net 4 Client CC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Client NoCC\bin\Debug\Net 4 Client NoCC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Full CC\bin\Debug\Net 4 Full CC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Full NoCC\bin\Debug\Net 4 Full NoCC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\SL 4 CC\bin\Debug\SL 4 CC.dll");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace IntegrationTests
             var assembly = Assembly.LoadFrom(@"..\..\..\SL 4 NoCC\bin\Debug\SL 4 NoCC.dll");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.AreEqual(string.Empty, result);
+            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
         }
     }
 }
