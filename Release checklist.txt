@@ -1,0 +1,14 @@
+1) Update the version in Source\ConnectedProperties\Properties\SharedAssemblyInfo.cs and Source\Nito.ConnectedProperties.nuspec
+2) Check in all changes.
+3) Run all unit tests.
+4) Build in "Code Analysis" mode. This runs the CC static checker; ensure it does not find any problems.
+5) Build in "Debug" mode and "Release" mode.
+6) [Skip for now, until Sandcastle bugs are fixed] Build the chm help.
+   [Note: when Sandcastle bugs have been fixed, we need to change the NuGet and Binary scripts to work with the Sandcastle-modified xmldoc files]
+7) Build the NuGet package.
+8) Deploy the NuGet package locally and perform integration testing:
+   A) Open the IntegrationTests solution in VS.
+   B) For each non-test project in the solution, add the NuGet package.
+   C) Run the tests.
+   D) *Revert* your changes to the IntegrationTests projects.
+9) Build the binary release zip and publish.
