@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Nito.ConnectedProperties;
+using Nito.ConnectedProperties.Explicit;
 
 namespace IntegrationTest
 {
@@ -13,7 +15,16 @@ namespace IntegrationTest
 
         public static string PreconditionViolationExceptionType()
         {
-            return string.Empty;
+            try
+            {
+                var propertyDefinition = new PropertyConnector<object, dynamic>();
+                propertyDefinition.GetProperty(null);
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetType().ToString();
+            }
         }
     }
 }
