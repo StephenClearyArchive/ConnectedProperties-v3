@@ -13,3 +13,7 @@ glob:Util/Source/FixXmlDocumentation/obj
 glob:Help/*/Help
 glob:Source/ConnectedProperties (SL)/Bin
 glob:Source/ConnectedProperties (SL)/obj
+glob:IntegrationTests/*/bin
+glob:IntegrationTests/*/obj
+glob:IntegrationTests/*/Bin
+glob:IntegrationTests/TestResults
