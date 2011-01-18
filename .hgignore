@@ -17,3 +17,4 @@ glob:IntegrationTests/*/bin
 glob:IntegrationTests/*/obj
 glob:IntegrationTests/*/Bin
 glob:IntegrationTests/TestResults
+glob:Binaries
