@@ -18,3 +18,5 @@ glob:IntegrationTests/*/obj
 glob:IntegrationTests/*/Bin
 glob:IntegrationTests/TestResults
 glob:Binaries
+glob:Util/Source/DocumentationIdUnitTests/bin
+glob:Util/Source/DocumentationIdUnitTests/obj
