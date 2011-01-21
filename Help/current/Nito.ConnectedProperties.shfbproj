@@ -31,7 +31,8 @@
     </PlugInConfigurations>
     <DocumentationSources>
       <DocumentationSource sourceFile="ConnectedProperties.dll" />
-<DocumentationSource sourceFile="ConnectedProperties.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="ConnectedProperties.xml" />
+    </DocumentationSources>
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <ProjectSummary>The Nito Connected Properties library provides a simple API to connect properties to most .NET objects at runtime.</ProjectSummary>
     <CopyrightText>Copyright 2011 Nito Programs</CopyrightText>
@@ -154,6 +155,28 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceItems Include="vs2005\Content\reference_content.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppDomains.aml" />
+    <None Include="Connected Properties API.aml" />
+    <None Include="Library Compatibility.aml" />
+    <None Include="Notes on Naming.aml" />
+    <None Include="Details.aml" />
+    <None Include="Dynamic Connected Properties.aml" />
+    <None Include="Connected Methods.aml" />
+    <None Include="Interfaces and Inheritance.aml" />
+    <None Include="Visibility of Connectors.aml" />
+    <None Include="Extension Method Wrappers.aml" />
+    <None Include="Techniques.aml" />
+    <None Include="Limitations.aml" />
+    <None Include="Object Lifetimes.aml" />
+    <None Include="Explicit and Implicit Connectors.aml" />
+    <None Include="Carrier Objects.aml" />
+    <None Include="Connected Property Values.aml" />
+    <None Include="Introduction.aml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="ToC.content" />
   </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />

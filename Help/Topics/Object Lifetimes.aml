@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="230c41f4-d930-4618-bde2-4749890831b4" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>Connected properties do not extend the lifetime of their carrier objects in any way.</para>
+    </introduction>
+    <section address="ConnectedPropertyLifetimes">
+      <title>Connected Property Lifetimes</title>
+      <content>
+
+<para>A property that is connected to a carrier object will become eligible for garbage collection when any of the following conditions take place:</para>
+
+<list class="bullet">
+<listItem>The carrier object becomes eligible for garbage collection. When a carrier object is garbage collected, all of its connected property values become eligible for garbage collection.</listItem>
+<listItem>The property is disconnected. If the property is explicitly disconnected, then its former value will become eligible for garbage collection immediately.</listItem>
+<listItem>The connector becomes eligible for garbage collection. When a connector is garbage collected, all of its property values that are connected to any carrier objects become eligible for garbage collection.</listItem>
+</list>
+
+<alert class="note">
+<para>This last point only applies to explicit connectors. Implicit connectors are only garbage collected when the AppDomain shuts down.</para>
+</alert>
+
+<para>(This is assuming that there are no other references to the property value; if there are, then of course it does not become eligible for garbage collection.)</para>
+
+<para>Connected property values are never disposed, but they will be finalized.</para>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>

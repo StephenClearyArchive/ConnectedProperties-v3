@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8d13fde8-5bf0-483b-877a-a6bc66e0ed9d" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>Care must be taken when connecting properties to carrier objects through interfaces or base classes.</para>
+    </introduction>
+    <section address="Section1">
+      <title>Interfaces and Inheritance</title>
+      <content>
+
+<para>Interfaces may be implemented by reference types or value types, and value types cannot be carrier objects. Similarly, a reference-equatable base class may have a derived class that uses value equality, and an instance of that derived class cannot be a carrier object.</para>
+
+<para>The <codeEntityReference>M:Nito.ConnectedProperties.Implicit.ObjectExtensions.TryGetConnectedProperty``2</codeEntityReference> methods may be used to access properties only if the carrier instance is a valid carrier:</para>
+
+<code language="C#">
+<![CDATA[
+internal struct NameTag {}
+
+public void DisplayName(object obj)
+{
+  var nameProperty = obj.TryGetConnectedProperty<string, NameTag>();
+  if (nameProperty != null)
+  {
+    Console.WriteLine("Name: " + nameProperty.Get());
+  }
+  else
+  {
+    Console.WriteLine("No name is connected.");
+  }
+}
+]]>
+</code>
+
+<para>Explicit connectors have a similar <codeEntityReference>M:Nito.ConnectedProperties.Explicit.IPropertyConnector`2.TryGetProperty(`0)</codeEntityReference> method:</para>
+
+<code language="C#">
+<![CDATA[
+private IPropertyConnector<object, string> namePropertyDefinition = new PropertyConnector<object, string>();
+
+public void DisplayName(object obj)
+{
+  var nameProperty = this.namePropertyDefinition.TryGetProperty(obj);
+  if (nameProperty != null)
+  {
+    Console.WriteLine("Name: " + nameProperty.Get());
+  }
+  else
+  {
+    Console.WriteLine("No name is connected.");
+  }
+}
+]]>
+</code>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>

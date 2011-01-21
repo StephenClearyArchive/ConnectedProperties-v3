@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cd231980-fa35-4ec8-8dda-08316eb19a95" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>The syntax for directly using connected properties is a bit awkward. One way to make it less awkward for end-users is to wrap a connector in extension methods.</para>
+    </introduction>
+    <section address="Section1">
+      <title>Extension Method Wrappers</title>
+      <content>
+
+<code language="C#">
+<![CDATA[
+// Represents a piece of data that has been read out of a file. We want to connect a property containing the source line number.
+public class Token { .. }
+
+// Define our connected property tag, internal to this assembly.
+internal struct SourceLineNumberTag { }
+
+// Allow access to the connected property via extension methods.
+using Nito.ConnectedProperties;
+using Nito.ConnectedProperties.Implicit;
+public static class TokenExtensions
+{
+  public static int GetSourceLineNumber(Token token)
+  {
+    return token.GetConnectedProperty<int, SourceLineNumberTag>().Get();
+  }
+
+  public static void SetSourceLineNumber(Token token, int lineNumber)
+  {
+    token.GetConnectedProperty<int, SourceLineNumberTag>().Set(lineNumber);
+  }
+}
+]]>
+</code>
+
+<para>The end-user then has <codeInline>GetSourceLineNumber</codeInline> and <codeInline>SetSourceLineNumber</codeInline> extension methods that they may use, instead of having to use the Connected Properties library directly.</para>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>
