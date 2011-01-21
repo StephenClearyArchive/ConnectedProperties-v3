@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f56e663a-f1ab-4150-b50c-a76ed740cf60" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>For the curious...</para>
+    </introduction>
+    <section address="Section1">
+      <title>How It Works</title>
+      <content>
+
+<para>The Connected Properties library is just a thin wrapper around <codeEntityReference>T:System.Runtime.CompilerServices.ConditionalWeakTable`2</codeEntityReference></para>
+
+<para>Each "connector" is actually an instance of <codeInline>ConditionalWeakTable</codeInline>.</para>
+
+<para>The wrapper provides the following advantages over using <codeInline>ConditionalWeakTable</codeInline> directly:</para>
+
+<list class="bullet">
+<listItem>You may attach value types to carrier objects (<codeInline>ConditionalWeakTable</codeInline> values must be reference types).</listItem>
+<listItem>You may use "tag types" to implicitly declare connectors, so you don't have to manage their lifetimes.</listItem>
+<listItem>If you do use explicit connectors, you can treat them as contravariant in the <codeInline>TCarrier</codeInline> type by using <codeEntityReference>T:Nito.ConnectedProperties.Explicit.IPropertyConnector`2</codeEntityReference>.</listItem>
+<listItem>Carrier objects are checked at runtime to prevent accidentally using an improper carrier object.</listItem>
+<listItem>The API for accessing property values is more complete (e.g., <codeInline>Set</codeInline>) and does not have vexing exceptions (<codeInline>ConditionalWeakTable</codeInline> has a vexing exception for its <codeInline>Add</codeInline> method).</listItem>
+</list>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>
