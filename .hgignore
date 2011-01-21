@@ -20,3 +20,5 @@ glob:IntegrationTests/TestResults
 glob:Binaries
 glob:Util/Source/DocumentationIdUnitTests/bin
 glob:Util/Source/DocumentationIdUnitTests/obj
+glob:Help/current/ConnectedProperties.dll
+glob:Help/current/ConnectedProperties.xml
