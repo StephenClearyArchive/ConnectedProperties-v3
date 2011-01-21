@@ -6,8 +6,8 @@
   <title>Connected Properties (by Nito Programs)</title>
   <authors>Stephen Cleary</authors>
   <owners>Stephen Cleary</owners>
-  <description>An API to "attach" properties to (most) .NET objects at runtime.</description>
-  <summary>Connected properties are data objects that may be connected to a "carrier object" at runtime. A carrier object is any reference type that uses reference equality. All accesses to connected properties are thread-safe.</summary>
+  <summary>An API to "attach" properties to (most) .NET objects at runtime.</summary>
+  <description>Connected Properties is an API to "attach" properties to (most) .NET objects at runtime. Connected property values are connected to a "carrier object". A carrier object may be any reference type that uses reference equality. All accesses to connected properties are thread-safe.</description>
   <language>en-US</language>
   <licenseUrl>http://connectedproperties.codeplex.com/license</licenseUrl>
   <projectUrl>http://connectedproperties.codeplex.com/</projectUrl>
