@@ -11,6 +11,8 @@ if not exist Binaries\ConnectedProperties\SL4 mkdir Binaries\ConnectedProperties
 if not exist Binaries\ConnectedProperties\SL4\Debug mkdir Binaries\ConnectedProperties\SL4\Debug
 if not exist Binaries\ConnectedProperties\SL4\CodeContracts mkdir Binaries\ConnectedProperties\SL4\CodeContracts
 
+copy /Y Help\current\Help\ConnectedProperties.chm Binaries\ConnectedProperties
+
 copy /Y Source\ConnectedProperties\bin\Debug\ConnectedProperties.dll Binaries\ConnectedProperties\Net40\Debug
 copy /Y Source\ConnectedProperties\bin\Debug\ConnectedProperties.pdb Binaries\ConnectedProperties\Net40\Debug
 copy /Y Help\current\Help\ConnectedProperties.xml Binaries\ConnectedProperties\Net40\Debug

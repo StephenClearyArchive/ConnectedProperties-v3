@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="04247a32-8a6e-4f4a-ac0f-2bdb9cb19f57" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>Why "connected properties"?</para>
+    </introduction>
+    <section address="Section1">
+      <title>Naming</title>
+      <content>
+
+<para>"Connected properties" should really be called "attached properties", but that name <externalLink><linkText>was already taken by WPF</linkText><linkUri>http://msdn.microsoft.com/en-us/library/ms749011.aspx</linkUri></externalLink>.</para>
+
+<para>Likewise, the term "bound properties" was considered (in the sense that the properties "bind" to their carrier objects), but that term <externalLink><linkText>was already associated with data binding</linkText><linkUri>http://en.wikipedia.org/wiki/Bound_property</linkUri></externalLink>.</para>
+
+<para>So, I settled on the term "connected properties".</para>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>

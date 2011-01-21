@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="08a32138-6d51-48bb-88c3-b84831267b59" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>A carrier object is an object that may have properties connected to it.</para>
+    </introduction>
+    <section address="Section1">
+      <title>Carrier Objects</title>
+      <content>
+
+<para>Carrier objects must be reference types; value types cannot have properties connected to them.</para>
+
+<para>Furthermore, carrier objects must use reference equality. Types such as <codeEntityReference>T:System.String</codeEntityReference> do not qualify as carrier objects. This restriction is checked at runtime, and the Connected Properties library will throw an <codeEntityReference>T:System.InvalidOperationException</codeEntityReference> if you attempt to connect a property to an invalid carrier object.</para>
+
+<para>As a result of these restrictions, two different carrier objects have the same connected properties iff the two objects are equal.</para>
+
+<para>Explicit connectors may restrict their carrier object type further: they may specify that only carrier objects of a certain type or interface may have their connected property.</para>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="46eb5b2e-1aee-4b46-a854-1996dd3e7fd7" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>Implicit connected property connecters exist per-AppDomain.</para>
+    </introduction>
+    <section address="Section1">
+      <title>AppDomains</title>
+      <content>
+
+<para>This means that the same tag types loaded in different AppDomains refer to different property connectors.</para>
+
+<para>When an AppDomain is unloaded, all properties connected by implicit connectors become eligible for garbage collection.</para>
+
+      </content>
+    </section>
+  </developerConceptualDocument>
+</topic>
