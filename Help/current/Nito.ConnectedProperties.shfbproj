@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AppDomains.aml" />
+    <None Include="How It Works.aml" />
     <None Include="Connected Properties API.aml" />
     <None Include="Library Compatibility.aml" />
     <None Include="Notes on Naming.aml" />

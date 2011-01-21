@@ -10,7 +10,7 @@
 
 <para>Interfaces may be implemented by reference types or value types, and value types cannot be carrier objects. Similarly, a reference-equatable base class may have a derived class that uses value equality, and an instance of that derived class cannot be a carrier object.</para>
 
-<para>The <codeEntityReference>M:Nito.ConnectedProperties.Implicit.ObjectExtensions.TryGetConnectedProperty``2</codeEntityReference> methods may be used to access properties only if the carrier instance is a valid carrier:</para>
+<para>The <codeEntityReference>Overload:Nito.ConnectedProperties.Implicit.ObjectExtensions.TryGetConnectedProperty</codeEntityReference> methods may be used to access properties only if the carrier instance is a valid carrier:</para>
 
 <code language="C#">
 <![CDATA[
