@@ -2,6 +2,6 @@
 
 cd Help\current\Help
 
-..\..\Util\FixXmlDocumentation.exe --post
+..\..\..\Util\FixXmlDocumentation.exe --post
 
 pause
