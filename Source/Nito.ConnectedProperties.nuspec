@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
  <metadata>
-  <id>nito.connectedproperties</id>
+  <id>ConnectedProperties</id>
   <version>1.0.0</version>
   <title>Connected Properties (by Nito Programs)</title>
   <authors>Stephen Cleary</authors>
