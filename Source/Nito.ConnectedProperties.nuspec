@@ -2,7 +2,7 @@
 <package>
  <metadata>
   <id>ConnectedProperties</id>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <title>Connected Properties (by Nito Programs)</title>
   <authors>Stephen Cleary</authors>
   <owners>Stephen Cleary</owners>
@@ -11,18 +11,18 @@
   <language>en-US</language>
   <licenseUrl>http://connectedproperties.codeplex.com/license</licenseUrl>
   <projectUrl>http://connectedproperties.codeplex.com/</projectUrl>
+  <iconUrl>https://lh4.googleusercontent.com/-90uNoS8PsvM/Td5ey2VGonI/AAAAAAAAFDs/FhIQfrd_7V4/s800/ConnectedPropertiesLogo.PNG</iconUrl>
   <tags>property properties connected attached bound nito .net40 sl4 sl40</tags>
  </metadata>
  <files>
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\4" />
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\4" />
-  <file src="..\Help\current\Help\ConnectedProperties.xml" target="lib\4" />
-  <file src="ConnectedProperties\bin\Release\CodeContracts\ConnectedProperties.Contracts.dll" target="lib\4\CodeContracts" />
-  <file src="ConnectedProperties\bin\Release\CodeContracts\ConnectedProperties.Contracts.pdb" target="lib\4\CodeContracts" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
+  <file src="..\Help\current\Help\ConnectedProperties.xml" target="lib\net40-Client" />
+
   <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
   <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
   <file src="..\Help\current\Help\ConnectedProperties.xml" target="lib\SL4" />
-  <file src="ConnectedProperties (SL)\bin\Release\CodeContracts\ConnectedProperties.Contracts.dll" target="lib\SL4\CodeContracts" />
-  <file src="ConnectedProperties (SL)\bin\Release\CodeContracts\ConnectedProperties.Contracts.pdb" target="lib\SL4\CodeContracts" />
+
+  <file src="**\*.cs" target="src" />
  </files>
 </package>
