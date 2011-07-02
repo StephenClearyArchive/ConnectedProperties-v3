@@ -211,12 +211,30 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void ValueTypesWithoutValidationCanBeCarrierObjects()
+        {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            int carrier = 13;
+            var propertyDefinition = new PropertyConnector<object, int>();
+            propertyDefinition.GetProperty(carrier, true);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void StringsCannotBeCarrierObjects()
         {
             string carrier = "Hi";
             var propertyDefinition = new PropertyConnector<string, int>();
             propertyDefinition.GetProperty(carrier);
+        }
+
+        [TestMethod]
+        public void StringsWithoutValidationCanBeCarrierObjects()
+        {
+            // Please note: this is a highly dangerous example! Do not use in real-world code unless you know for-sure what you're doing!
+            string carrier = "Hi";
+            var propertyDefinition = new PropertyConnector<string, int>();
+            propertyDefinition.GetProperty(carrier, true);
         }
 
         [TestMethod]
@@ -228,11 +246,29 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void ValueTypesWithoutValidationCanBeCarrierObjects_Try()
+        {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            int carrier = 13;
+            var propertyDefinition = new PropertyConnector<object, int>();
+            Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier, true));
+        }
+
+        [TestMethod]
         public void StringsCannotBeCarrierObjects_Try()
         {
             string carrier = "Hi";
             var propertyDefinition = new PropertyConnector<string, int>();
             Assert.IsNull(propertyDefinition.TryGetProperty(carrier));
+        }
+
+        [TestMethod]
+        public void StringsWithoutValidationCanBeCarrierObjects_Try()
+        {
+            // Please note: this is a highly dangerous example! Do not use in real-world code unless you know for-sure what you're doing!
+            string carrier = "Hi";
+            var propertyDefinition = new PropertyConnector<string, int>();
+            Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier, true));
         }
 
         [TestMethod]
@@ -261,6 +297,15 @@ namespace UnitTests
             MyStruct carrier = new MyStruct();
             var propertyDefinition = new PropertyConnector<IMyInterface, int>();
             Assert.IsNull(propertyDefinition.TryGetProperty(carrier));
+        }
+
+        [TestMethod]
+        public void MyStructWithoutValidationCanBeCarrierObjectForConnectorOfInterfaceType()
+        {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            MyStruct carrier = new MyStruct();
+            var propertyDefinition = new PropertyConnector<IMyInterface, int>();
+            Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier, true));
         }
     }
 }

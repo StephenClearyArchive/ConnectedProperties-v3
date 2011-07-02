@@ -192,11 +192,27 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void ValueTypesWithoutValidationCanBeCarrierObjects()
+        {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            int carrier = 13;
+            carrier.GetConnectedProperty<int, tag1>(true);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void StringsCannotBeCarrierObjects()
         {
             string carrier = "Hi";
             carrier.GetConnectedProperty<int, tag1>();
+        }
+
+        [TestMethod]
+        public void StringsWithoutValidationCanBeCarrierObjects()
+        {
+            // Please note: this is a highly dangerous example! Do not use in real-world code unless you know for-sure what you're doing!
+            string carrier = "Hi";
+            carrier.GetConnectedProperty<int, tag1>(true);
         }
 
         [TestMethod]
@@ -207,10 +223,19 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void StringsCannotBeCarrierObjects_Try()
+        public void ValueTypesWithoutValidationCanBeCarrierObjects_Try()
         {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            int carrier = 13;
+            Assert.IsNotNull(carrier.TryGetConnectedProperty<int, tag1>(true));
+        }
+
+        [TestMethod]
+        public void StringsWithoutValidationCanBeCarrierObjects_Try()
+        {
+            // Please note: this is a highly dangerous example! Do not use in real-world code unless you know for-sure what you're doing!
             string carrier = "Hi";
-            Assert.IsNull(carrier.TryGetConnectedProperty<int, tag1>());
+            Assert.IsNotNull(carrier.TryGetConnectedProperty<int, tag1>(true));
         }
 
         [TestMethod]
@@ -241,6 +266,17 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void DynamicIsTheDefaultValueTypeWithoutValidation()
+        {
+            // Please note: this is an extremely dangerous example! Do not use in real-world code!
+            object carrier = 13;
+            carrier.GetConnectedProperty<tag1>(true).Set(13);
+            carrier.GetConnectedProperty<dynamic, tag1>(true).Set(17);
+            Assert.AreEqual(17, carrier.GetConnectedProperty<tag1>(true).Get());
+            Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>(true).Get());
+        }
+
+        [TestMethod]
         public void DynamicIsTheDefaultValueType_Try()
         {
             object carrier = new object();
@@ -248,6 +284,17 @@ namespace UnitTests
             carrier.TryGetConnectedProperty<dynamic, tag1>().Set(17);
             Assert.AreEqual(17, carrier.TryGetConnectedProperty<tag1>().Get());
             Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>().Get());
+        }
+
+        [TestMethod]
+        public void DynamicIsTheDefaultValueTypeWithoutValidation_Try()
+        {
+            // Please note: this is a highly dangerous example! Do not use in real-world code unless you know for-sure what you're doing!
+            string carrier = "Bob";
+            carrier.GetConnectedProperty<tag1>(true).Set(13);
+            carrier.TryGetConnectedProperty<dynamic, tag1>(true).Set(17);
+            Assert.AreEqual(17, carrier.TryGetConnectedProperty<tag1>(true).Get());
+            Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>(true).Get());
         }
     }
 }

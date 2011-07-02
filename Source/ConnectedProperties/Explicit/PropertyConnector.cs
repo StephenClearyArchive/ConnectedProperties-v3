@@ -19,9 +19,17 @@ namespace Nito.ConnectedProperties.Explicit
         /// <summary>
         /// Gets a connectible property on the specified carrier object, returning <c>null</c> if the specified object cannot have connected properties.
         /// </summary>
-        /// <param name="carrier">The carrier object for which to retrieve the connectible property. May not be <c>null</c>.</param>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
         IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier);
+
+        /// <summary>
+        /// Gets a connectible property on the specified carrier object, optionally bypassing carrier object validation. Returns <c>null</c> if validation is not bypassed and the specified object cannot have connected properties.
+        /// </summary>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable unless validation is bypassed. May not be <c>null</c>.</param>
+        /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
+        /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier, bool bypassValidation);
 
         /// <summary>
         /// Gets a connectible property on the specified carrier object, throwing <see cref="InvalidOperationException"/> if the specified object cannot have connected properties.
@@ -30,6 +38,15 @@ namespace Nito.ConnectedProperties.Explicit
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
         IConnectibleProperty<TValue> GetProperty(TCarrier carrier);
+
+        /// <summary>
+        /// Gets a connectible property on the specified carrier object, optionally bypassing carrier object validation. Throws <see cref="InvalidOperationException"/> if validation is not bypassed and the specified object cannot have connected properties.
+        /// </summary>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable unless validation is bypassed. May not be <c>null</c>.</param>
+        /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
+        /// <returns>The connectible property.</returns>
+        /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        IConnectibleProperty<TValue> GetProperty(TCarrier carrier, bool bypassValidation);
     }
 
     [ContractClassFor(typeof(IPropertyConnector<,>))]
@@ -43,6 +60,19 @@ namespace Nito.ConnectedProperties.Explicit
         }
 
         public IConnectibleProperty<TValue> GetProperty(TCarrier carrier)
+        {
+            Contract.Requires(carrier != null);
+            Contract.Ensures(Contract.Result<IConnectibleProperty<TValue>>() != null);
+            return null;
+        }
+
+        public IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier, bool bypassValidation)
+        {
+            Contract.Requires(carrier != null);
+            return null;
+        }
+
+        public IConnectibleProperty<TValue> GetProperty(TCarrier carrier, bool bypassValidation)
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<TValue>>() != null);
@@ -80,11 +110,22 @@ namespace Nito.ConnectedProperties.Explicit
         /// <summary>
         /// Gets a connectible property on the specified carrier object, returning <c>null</c> if the specified object cannot have connected properties.
         /// </summary>
-        /// <param name="carrier">The carrier object for which to retrieve the connectible property. May not be <c>null</c>.</param>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
         public IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier)
         {
-            if (!PropertyStoreUtil.TryVerify(carrier))
+            return this.TryGetProperty(carrier, false);
+        }
+
+        /// <summary>
+        /// Gets a connectible property on the specified carrier object, optionally bypassing carrier object validation. Returns <c>null</c> if validation is not bypassed and the specified object cannot have connected properties.
+        /// </summary>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable unless validation is bypassed. May not be <c>null</c>.</param>
+        /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
+        /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        public IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier, bool bypassValidation)
+        {
+            if (!bypassValidation && !PropertyStoreUtil.TryVerify(carrier))
                 return null;
             return new ConnectibleProperty<TCarrier, TValue>(this.store, carrier);
         }
@@ -97,7 +138,20 @@ namespace Nito.ConnectedProperties.Explicit
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
         public IConnectibleProperty<TValue> GetProperty(TCarrier carrier)
         {
-            PropertyStoreUtil.Verify(carrier);
+            return this.GetProperty(carrier, false);
+        }
+
+        /// <summary>
+        /// Gets a connectible property on the specified carrier object, optionally bypassing carrier object validation. Throws <see cref="InvalidOperationException"/> if validation is not bypassed and the specified object cannot have connected properties.
+        /// </summary>
+        /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable unless validation is bypassed. May not be <c>null</c>.</param>
+        /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
+        /// <returns>The connectible property.</returns>
+        /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        public IConnectibleProperty<TValue> GetProperty(TCarrier carrier, bool bypassValidation)
+        {
+            if (!bypassValidation)
+                PropertyStoreUtil.Verify(carrier);
             return new ConnectibleProperty<TCarrier, TValue>(this.store, carrier);
         }
     }
