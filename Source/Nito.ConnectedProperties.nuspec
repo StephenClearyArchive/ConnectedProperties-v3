@@ -12,7 +12,7 @@
   <licenseUrl>http://connectedproperties.codeplex.com/license</licenseUrl>
   <projectUrl>http://connectedproperties.codeplex.com/</projectUrl>
   <iconUrl>https://lh4.googleusercontent.com/-90uNoS8PsvM/Td5ey2VGonI/AAAAAAAAFDs/FhIQfrd_7V4/s800/ConnectedPropertiesLogo.PNG</iconUrl>
-  <tags>property properties connected attached bound nito .net40 sl4 sl40</tags>
+  <tags>property properties connect attach bind connected attached bound nito .net40 sl4 sl40</tags>
  </metadata>
  <files>
   <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
