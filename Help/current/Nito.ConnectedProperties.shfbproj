@@ -162,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AppDomains.aml" />
+    <None Include="Revision History.aml" />
+    <None Include="Revision History.aml" />
+    <None Include="Revision History.aml" />
     <None Include="How It Works.aml" />
     <None Include="Connected Properties API.aml" />
     <None Include="Library Compatibility.aml" />
