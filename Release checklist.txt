@@ -6,7 +6,6 @@
 6) Build the chm help:
    A) Run "Pre-Build Help.cmd"
    B) Load the shfbproj file under Help\current in SHFB and build the chm.
-   C) Run "Post-Build Help.cmd"
 7) Build the NuGet package bu running "Build NuGet Package.cmd".
 8) Deploy the NuGet package locally and perform integration testing:
    A) Open the IntegrationTests solution in VS.

@@ -16,19 +16,7 @@ namespace FixXmlDocumentation
         {
             try
             {
-                bool pre;
-                if (args[0] == "--pre")
-                    pre = true;
-                else if (args[0] == "--post")
-                    pre = false;
-                else
-                    throw new InvalidOperationException("Invalid command line: specify either --pre or --post.");
-
-                if (pre)
-                    Pre();
-                else
-                    Post();
-
+                Pre();
                 return 0;
             }
             catch (Exception ex)
@@ -53,25 +41,7 @@ namespace FixXmlDocumentation
 
                 doc.Save(file);
 
-                // Workaround Sandcastle bug by naming one of our components incorrectly (!)
-                File.WriteAllText(file, File.ReadAllText(file).Replace(
-                    "M:Nito.ConnectedProperties.IConnectibleProperty`1.GetOrCreate(System.Func{`0})",
-                    "M:Nito.ConnectedProperties.IConnectibleProperty`1.GetOrCreate(System.Func`1)"));
-
                 Console.WriteLine("Prepared " + file + " for Sandcastle");
-            }
-        }
-
-        static void Post()
-        {
-            foreach (var file in Directory.EnumerateFiles(Environment.CurrentDirectory, "*.xml"))
-            {
-                // Replace the incorrect name with the correct name after Sandcastle runs, so VS will be OK with it.
-                File.WriteAllText(file, File.ReadAllText(file).Replace(
-                    "M:Nito.ConnectedProperties.IConnectibleProperty`1.GetOrCreate(System.Func`1)",
-                    "M:Nito.ConnectedProperties.IConnectibleProperty`1.GetOrCreate(System.Func{`0})"));
-
-                Console.WriteLine("Fixed " + file);
             }
         }
     }
