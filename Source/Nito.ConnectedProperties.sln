@@ -21,24 +21,31 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeAnalysis|Any CPU = CodeAnalysis|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		Release (no precondition checks)|Any CPU = Release (no precondition checks)|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.CodeAnalysis|Any CPU.ActiveCfg = Release|Any CPU
 		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release (no precondition checks)|Any CPU.ActiveCfg = Release (no precondition checks)|Any CPU
+		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release (no precondition checks)|Any CPU.Build.0 = Release (no precondition checks)|Any CPU
 		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C0F09B5-00FC-46F5-A216-F3C891C9C33A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.CodeAnalysis|Any CPU.ActiveCfg = CodeAnalysis|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.CodeAnalysis|Any CPU.Build.0 = CodeAnalysis|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Release (no precondition checks)|Any CPU.ActiveCfg = Release (no precondition checks)|Any CPU
+		{A2223402-841E-460F-9071-B6B6E78E8507}.Release (no precondition checks)|Any CPU.Build.0 = Release (no precondition checks)|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2223402-841E-460F-9071-B6B6E78E8507}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.CodeAnalysis|Any CPU.ActiveCfg = CodeAnalysis|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.CodeAnalysis|Any CPU.Build.0 = CodeAnalysis|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Release (no precondition checks)|Any CPU.ActiveCfg = Release (no precondition checks)|Any CPU
+		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Release (no precondition checks)|Any CPU.Build.0 = Release (no precondition checks)|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55D9648A-BC6E-4C84-9ED9-01005B9B1AA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

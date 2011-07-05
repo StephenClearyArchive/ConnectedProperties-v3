@@ -20,12 +20,12 @@ namespace IntegrationTests
         }
 
         [TestMethod]
-        public void Net4Client_WithoutCC_HasNonCCExceptionType()
+        public void Net4Client_WithoutCC_HasCCExceptionType()
         {
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Client NoCC\bin\Debug\Net 4 Client NoCC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -38,12 +38,12 @@ namespace IntegrationTests
         }
 
         [TestMethod]
-        public void Net4Full_WithoutCC_HasNonCCExceptionType()
+        public void Net4Full_WithoutCC_HasCCExceptionType()
         {
             var assembly = Assembly.LoadFrom(@"..\..\..\Net 4 Full NoCC\bin\Debug\Net 4 Full NoCC.exe");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
 
         [TestMethod]
@@ -56,12 +56,12 @@ namespace IntegrationTests
         }
 
         [TestMethod]
-        public void SL4_WithoutCC_HasNonCCExceptionType()
+        public void SL4_WithoutCC_HasCCExceptionType()
         {
             var assembly = Assembly.LoadFrom(@"..\..\..\SL 4 NoCC\bin\Debug\SL 4 NoCC.dll");
             var method = assembly.GetType("IntegrationTest.Program").GetMethod("PreconditionViolationExceptionType", BindingFlags.Static | BindingFlags.Public);
             string result = (string)method.Invoke(null, null);
-            Assert.IsFalse(result.Contains("System.Diagnostics.Contracts"));
+            Assert.IsTrue(result.Contains("System.Diagnostics.Contracts"));
         }
     }
 }
