@@ -76,7 +76,7 @@ class Program
 <para>The <codeInline>Net40</codeInline> binaries should work with any .NET 4.0 Client or Full Profile projects. This includes class libraries, ASP.NET, WPF, etc. The <codeInline>SL4</codeInline> binaries should work with Silverlight 4.0 projects. Earlier versions of Silverlight, and Silverlight for Windows Phone / XNA are not supported.</para>
 </alert>
 
-<para>It's recommended (but not required) to enable the <codeInline>Call-site Requires Checking</codeInline> Code Contracts option in your <codeInline>Debug</codeInline> build. This will add checks at runtime to ensure you are using the library correctly.</para>
+<para>The <codeInline>Release</codeInline> build does perform precondition checks, to ensure the library is being used correctly. If you need minimum overhead, you can use the <codeInline>Release (no precondition checks)</codeInline> build.</para>
 
 <para>If you suspect a bug in the Connected Properties library itself, you may reference the <codeInline>Net40\Debug\ConnectedProperties.dll</codeInline> or <codeInline>SL4\Debug\ConnectedProperties.dll</codeInline> instead of the <codeInline>Release</codeInline> versions. This will add many more checks at runtime, such as internal consistency checks.</para>
 
