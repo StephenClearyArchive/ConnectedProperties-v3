@@ -18,12 +18,13 @@ using Nito.ConnectedProperties.Implicit;
 
 class Program
 {
-  // Declare the "Name" connected property.
+  // Define the "tag" for the "Name" connected property.
   public struct NameProperty {};
 
   // Display the Name of any object passed into this method.
   public static void DisplayName(object obj)
   {
+    // Look up the property, of type "string", with tag "NameProperty".
     var nameProperty = obj.GetConnectedProperty<string, NameProperty>();
     Console.WriteLine("Name: " + nameProperty.Get());
   }
