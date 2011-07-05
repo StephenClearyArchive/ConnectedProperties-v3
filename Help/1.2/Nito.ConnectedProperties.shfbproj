@@ -25,9 +25,8 @@
     <PlugInConfigurations>
       <PlugInConfig id="Version Builder" enabled="True">
         <configuration>
-          <currentProject label="Nito.ConnectedProperties" version="1.3" ripOldApis="False" />
+          <currentProject label="Nito.ConnectedProperties" version="1.2" ripOldApis="False" />
           <versions>
-            <version label="Nito.ConnectedProperties" version="1.2" helpFileProject="..\1.2\Nito.ConnectedProperties.shfbproj" />
             <version label="Nito.ConnectedProperties" version="1.0" helpFileProject="..\1.0\Nito.ConnectedProperties.shfbproj" />
             <version label="Nito.ConnectedProperties" version="1.1" helpFileProject="..\1.1\Nito.ConnectedProperties.shfbproj" />
           </versions>
@@ -155,37 +154,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="vs2005\Content\" />
-    <Folder Include="vs2005\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceItems Include="vs2005\Content\reference_content.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AppDomains.aml" />
     <None Include="Revision History.aml" />
     <None Include="Revision History.aml" />
-    <None Include="Revision History.aml" />
-    <None Include="How It Works.aml" />
-    <None Include="Connected Properties API.aml" />
-    <None Include="Library Compatibility.aml" />
-    <None Include="Notes on Naming.aml" />
-    <None Include="Details.aml" />
-    <None Include="Dynamic Connected Properties.aml" />
-    <None Include="Connected Methods.aml" />
-    <None Include="Interfaces and Inheritance.aml" />
-    <None Include="Visibility of Connectors.aml" />
-    <None Include="Extension Method Wrappers.aml" />
-    <None Include="Techniques.aml" />
-    <None Include="Limitations.aml" />
-    <None Include="Object Lifetimes.aml" />
-    <None Include="Explicit and Implicit Connectors.aml" />
-    <None Include="Carrier Objects.aml" />
-    <None Include="Connected Property Values.aml" />
-    <None Include="Introduction.aml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ContentLayout Include="ToC.content" />
   </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
