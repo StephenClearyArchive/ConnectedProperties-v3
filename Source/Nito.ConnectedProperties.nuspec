@@ -2,7 +2,7 @@
 <package>
  <metadata>
   <id>ConnectedProperties</id>
-  <version>1.3.0</version>
+  <version>1.3.1</version>
   <title>Connected Properties (by Nito Programs)</title>
   <authors>Stephen Cleary</authors>
   <owners>Stephen Cleary</owners>
@@ -15,14 +15,14 @@
   <tags>property properties connect attach bind connected attached bound nito .net40 sl4 sl40</tags>
  </metadata>
  <files>
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
-  <file src="..\Help\current\Help\ConnectedProperties.xml" target="lib\net40-Client" />
+  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
+  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
+  <file src="Help\current\Help\ConnectedProperties.xml" target="lib\net40-Client" />
 
-  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
-  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
-  <file src="..\Help\current\Help\ConnectedProperties.xml" target="lib\SL4" />
+  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
+  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
+  <file src="Help\current\Help\ConnectedProperties.xml" target="lib\SL4" />
 
-  <file src="**\*.cs" target="src" />
+  <file src="Source\**\*.cs" target="src" />
  </files>
 </package>
