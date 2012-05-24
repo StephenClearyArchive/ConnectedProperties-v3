@@ -222,6 +222,8 @@
     <Compile Include="..\ConnectedProperties\ValueHolder.cs">
       <Link>ValueHolder.cs</Link>
     </Compile>
+    <Compile Include="DictionaryProperty.cs" />
+    <Compile Include="Named\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
