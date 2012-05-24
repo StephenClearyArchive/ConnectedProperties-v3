@@ -21,14 +21,14 @@
   </releaseNotes>
  </metadata>
  <files>
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
-  <file src="ConnectedProperties\bin\Release\ConnectedProperties.xml" target="lib\net40-Client" />
-
-  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
-  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
-  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.xml" target="lib\SL4" />
-
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.xml" target="lib\net40-client" />
+  <file src="ConnectedProperties\bin\Release\CodeContracts\ConnectedProperties.Contracts.dll" target="lib\net40-client\CodeContracts" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\sl4" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\sl4" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.xml" target="lib\sl4" />
+  <file src="ConnectedProperties (SL)\bin\Release\CodeContracts\ConnectedProperties.Contracts.dll" target="lib\sl4\CodeContracts" />
   <file src="**\*.cs" target="src" />
  </files>
 </package>
