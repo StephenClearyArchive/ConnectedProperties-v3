@@ -21,14 +21,14 @@
   </releaseNotes>
  </metadata>
  <files>
-  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
-  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
-  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.xml" target="lib\net40-Client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
+  <file src="ConnectedProperties\bin\Release\ConnectedProperties.xml" target="lib\net40-Client" />
 
-  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
-  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
-  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.xml" target="lib\SL4" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
+  <file src="ConnectedProperties (SL)\bin\Release\ConnectedProperties.xml" target="lib\SL4" />
 
-  <file src="Source\**\*.cs" target="src" />
+  <file src="**\*.cs" target="src" />
  </files>
 </package>
