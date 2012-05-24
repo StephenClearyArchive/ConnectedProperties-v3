@@ -1,3 +1,0 @@
-<content xml:space="preserve">
-  <item id="ExtensionUsageText">In Visual Basic and C#, you can call this method as an instance method on any object of type {0}. When you use instance method syntax to call this method, omit the first parameter.</item>
-</content>
