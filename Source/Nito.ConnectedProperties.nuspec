@@ -2,7 +2,7 @@
 <package>
  <metadata>
   <id>ConnectedProperties</id>
-  <version>1.4.0</version>
+  <version>2.0.0</version>
   <title>Connected Properties (by Nito Programs)</title>
   <authors>Stephen Cleary</authors>
   <owners>Stephen Cleary</owners>
@@ -13,7 +13,7 @@
   <iconUrl>https://lh4.googleusercontent.com/-90uNoS8PsvM/Td5ey2VGonI/AAAAAAAAFDs/FhIQfrd_7V4/s800/ConnectedPropertiesLogo.PNG</iconUrl>
   <tags>property properties connect attach bind connected attached bound nito .net40 sl4 sl40</tags>
   <releaseNotes>
-   [1.4.0] Added named connected properties.
+   [2.0.0] Added named connected properties and removed strong-name signing.
    [1.3.1] Fixed NuGet package to include xmldoc files.
    [1.3.0] Added precondition checks to the "Release" build.
    [1.2.0] Added bypassValidation overrides to allow non-reference-equatable carrier objects.
@@ -23,11 +23,11 @@
  <files>
   <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.dll" target="lib\net40-Client" />
   <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.pdb" target="lib\net40-Client" />
-  <file src="Help\current\Help\ConnectedProperties.xml" target="lib\net40-Client" />
+  <file src="Source\ConnectedProperties\bin\Release\ConnectedProperties.xml" target="lib\net40-Client" />
 
   <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.dll" target="lib\SL4" />
   <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.pdb" target="lib\SL4" />
-  <file src="Help\current\Help\ConnectedProperties.xml" target="lib\SL4" />
+  <file src="Source\ConnectedProperties (SL)\bin\Release\ConnectedProperties.xml" target="lib\SL4" />
 
   <file src="Source\**\*.cs" target="src" />
  </files>
