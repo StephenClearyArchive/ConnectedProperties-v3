@@ -1,18 +1,13 @@
-1) Update the version in Source\ConnectedProperties\Properties\SharedAssemblyInfo.cs and Source\Nito.ConnectedProperties.nuspec
-2) Copy the shfb with supporting dll and xml into its own Help\<old version> directory, and update the Help\current shfb to refer to it.
-3) Write release notes into shfb.
-4) Check in all changes.
-5) Run all unit tests.
-6) Build in "Code Analysis" mode. This runs the CC static checker; ensure it does not find any problems.
-7) Batch build all other modes.
-8) Build the chm help:
-   A) Run "Pre-Build Help.cmd"
-   B) Load the shfbproj file under Help\current in SHFB and build the chm.
-9) Build the NuGet package by running "Build NuGet Package.cmd".
-10) Deploy the NuGet package locally and perform integration testing:
+1) Update the version in SharedAssemblyInfo.cs and .nuspec
+2) Write release notes into .nuspec
+3) Check in all changes.
+4) Run all unit tests.
+5) Build in "Code Analysis" mode.
+6) Batch build all other modes.
+7) Build the NuGet package by running "Build NuGet Package.cmd".
+8) Deploy the NuGet package locally and perform integration testing:
    A) Open the IntegrationTests solution in VS.
    B) For each non-test project in the solution, add the NuGet package.
    C) Run the tests.
    D) *Revert* your changes to the IntegrationTests projects.
-11) Prepare the binary release by running "Build Binary Release.cmd".
-12) Zip up the binary release files and create CodePlex release.
+9) Release on NuGet and update CodePlex.
