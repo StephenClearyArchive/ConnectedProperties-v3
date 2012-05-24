@@ -52,7 +52,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void GetOrConnectConnectesIfNecessary()
+        public void GetOrConnectConnectsIfNecessary()
         {
             object carrier = new object();
             Assert.AreEqual(13, carrier.GetConnectedProperty<int, tag1>().GetOrConnect(13));
