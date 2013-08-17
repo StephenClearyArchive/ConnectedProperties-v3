@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
-namespace ConnectedProperties.Internal.PlatformEnlightenment
+namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
 {
     /// <summary>
     /// Provides static members to access enlightenments.
@@ -28,7 +28,7 @@ namespace ConnectedProperties.Internal.PlatformEnlightenment
             {
                 Name = "ConnectedProperties.Enlightenment",
             };
-            var enlightenmentProviderType = Type.GetType("ConnectedProperties.Internal.PlatformEnlightenment.EnlightenmentProvider, " + enlightenmentAssemblyName.FullName, false);
+            var enlightenmentProviderType = Type.GetType("Nito.ConnectedProperties.Internal.PlatformEnlightenment.EnlightenmentProvider, " + enlightenmentAssemblyName.FullName, false);
             if (enlightenmentProviderType == null)
                 return new DefaultEnlightenmentProvider();
             return (IEnlightenmentProvider)Activator.CreateInstance(enlightenmentProviderType);
