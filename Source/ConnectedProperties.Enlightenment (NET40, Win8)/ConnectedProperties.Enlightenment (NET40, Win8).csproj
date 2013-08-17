@@ -40,7 +40,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ConnectedProperties\Properties\SharedAssemblyInfo.cs">
+    <Compile Include="..\ConnectedProperties %28NET4, Win8, SL4, WP8%29\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="EnlightenmentVerification.cs" />

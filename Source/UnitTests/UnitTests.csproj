@@ -63,9 +63,13 @@
     <Compile Include="ExplicitConnectedPropertiesUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConnectedProperties\ConnectedProperties.csproj">
-      <Project>{A2223402-841E-460F-9071-B6B6E78E8507}</Project>
-      <Name>ConnectedProperties</Name>
+    <ProjectReference Include="..\ConnectedProperties %28NET4, Win8, SL4, WP8%29\ConnectedProperties %28NET4, Win8, SL4, WP8%29.csproj">
+      <Project>{b957d83a-fbc1-45ce-bf13-2d7317ec6433}</Project>
+      <Name>ConnectedProperties %28NET4, Win8, SL4, WP8%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConnectedProperties.Enlightenment %28NET40, Win8%29\ConnectedProperties.Enlightenment %28NET40, Win8%29.csproj">
+      <Project>{da800ce5-6053-4c8d-93a8-6c5a21e999d4}</Project>
+      <Name>ConnectedProperties.Enlightenment %28NET40, Win8%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
