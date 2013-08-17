@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConnectedProperties.Internal.PlatformEnlightenment
+namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
 {
     /// <summary>
     /// An enlightenment provider, which creates enlightenments on demand.

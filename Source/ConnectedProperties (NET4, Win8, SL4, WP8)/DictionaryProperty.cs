@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics.Contracts;
+using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
 
 namespace Nito.ConnectedProperties
 {
@@ -16,7 +17,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// The dictionary containing property values.
         /// </summary>
-        private readonly Dictionary<TKey, TValue> properties;
+        private readonly IConcurrentDictionary<TKey, TValue> properties;
 
         /// <summary>
         /// The key for this property.
@@ -28,7 +29,7 @@ namespace Nito.ConnectedProperties
         /// </summary>
         /// <param name="properties">The dictionary containing property values. May not be <c>null</c>.</param>
         /// <param name="key">The key for this property.</param>
-        public DictionaryProperty(Dictionary<TKey, TValue> properties, TKey key)
+        public DictionaryProperty(IConcurrentDictionary<TKey, TValue> properties, TKey key)
         {
             Contract.Requires(properties != null);
             this.properties = properties;
@@ -43,42 +44,22 @@ namespace Nito.ConnectedProperties
 
         TValue IConnectibleProperty<TValue>.GetOrCreate(Func<TValue> createCallback)
         {
-            lock ((this.properties as System.Collections.IDictionary).SyncRoot)
-            {
-                TValue ret;
-                if (this.properties.TryGetValue(this.key, out ret))
-                    return ret;
-                ret = createCallback();
-                this.properties.Add(this.key, ret);
-                return ret;
-            }
+            return this.properties.GetOrAdd(this.key, createCallback);
         }
 
         bool IConnectibleProperty<TValue>.TryConnect(TValue value)
         {
-            lock ((this.properties as System.Collections.IDictionary).SyncRoot)
-            {
-                if (this.properties.ContainsKey(this.key))
-                    return false;
-                this.properties.Add(this.key, value);
-                return true;
-            }
+            return this.properties.TryAdd(this.key, value);
         }
 
         bool IConnectibleProperty<TValue>.TryDisconnect()
         {
-            lock ((this.properties as System.Collections.IDictionary).SyncRoot)
-            {
-                return this.properties.Remove(this.key);
-            }
+            return this.properties.TryRemove(this.key);
         }
 
         bool IConnectibleProperty<TValue>.TryGet(out TValue value)
         {
-            lock ((this.properties as System.Collections.IDictionary).SyncRoot)
-            {
-                return this.properties.TryGetValue(this.key, out value);
-            }
+            return this.properties.TryGet(this.key, out value);
         }
     }
 }

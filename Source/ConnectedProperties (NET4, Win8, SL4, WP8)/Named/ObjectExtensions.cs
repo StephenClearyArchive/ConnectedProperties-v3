@@ -1,13 +1,13 @@
 ﻿// <copyright file="ObjectExtensions.cs" company="Nito Programs">
-//     Copyright (c) 2011-2012 Nito Programs.
+//     Copyright (c) 2011-2013 Nito Programs.
 // </copyright>
 
 namespace Nito.ConnectedProperties.Named
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using Nito.ConnectedProperties.Implicit;
+    using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
 
     /// <summary>
     /// Extensions to allow accessing named connected properties from any reference object.
@@ -37,7 +37,7 @@ namespace Nito.ConnectedProperties.Named
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            var properties = carrier.GetConnectedProperty<Dictionary<string, object>, NamedPropertyTag>(bypassValidation).GetOrCreate(() => new Dictionary<string, object>());
+            var properties = carrier.GetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag>(bypassValidation).GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>());
             return new DictionaryProperty<string, object>(properties, name);
         }
 
@@ -51,10 +51,10 @@ namespace Nito.ConnectedProperties.Named
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            var implicitProperty = carrier.TryGetConnectedProperty<Dictionary<string, object>, NamedPropertyTag>(bypassValidation);
+            var implicitProperty = carrier.TryGetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag>(bypassValidation);
             if (implicitProperty == null)
                 return null;
-            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => new Dictionary<string, object>()), name);
+            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>()), name);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Nito.ConnectedProperties.Named
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            var properties = carrier.GetConnectedProperty<Dictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation).GetOrCreate(() => new Dictionary<string, object>());
+            var properties = carrier.GetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation).GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>());
             return new DictionaryProperty<string, object>(properties, name);
         }
 
@@ -85,10 +85,10 @@ namespace Nito.ConnectedProperties.Named
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            var implicitProperty = carrier.TryGetConnectedProperty<Dictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation);
+            var implicitProperty = carrier.TryGetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation);
             if (implicitProperty == null)
                 return null;
-            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => new Dictionary<string, object>()), name);
+            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>()), name);
         }
     }
 }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
 {
     /// <summary>
-    /// The default enlightenment provider, used when the platform enlightenment provider could not be found.
+    /// The platform enlightenment provider for .NET 4.5 and Windows 8.
     /// </summary>
-    public sealed partial class DefaultEnlightenmentProvider : IEnlightenmentProvider
+    public sealed partial class EnlightenmentProvider : IEnlightenmentProvider
     {
         T IEnlightenmentProvider.CreateEnlightenment<T>()
         {
