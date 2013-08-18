@@ -1,9 +1,10 @@
 ﻿// <copyright file="PropertyStoreUtil.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
+//     Copyright (c) 2011-2013 Nito Programs.
 // </copyright>
 
 namespace Nito.ConnectedProperties
 {
+    using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
     using System;
     using System.Diagnostics.Contracts;
 
@@ -12,12 +13,10 @@ namespace Nito.ConnectedProperties
     /// </summary>
     internal static class PropertyStoreUtil
     {
-#if !SILVERLIGHT
         /// <summary>
         /// A cache of valid carrier types.
         /// </summary>
-        internal static System.Collections.Concurrent.ConcurrentDictionary<Type, bool> validCarrierTypes = new System.Collections.Concurrent.ConcurrentDictionary<Type, bool>();
-#endif
+        internal static IConcurrentDictionary<Type, bool> validCarrierTypes = Enlightenment.ConcurrentDictionary.Create<Type, bool>();
 
         /// <summary>
         /// Verifies the carrier object: it must be a reference type that uses reference equality. Returns <c>true</c> if the carrier object may have connected properties; <c>false</c> if the carrier object may not have connected properties.
@@ -28,11 +27,8 @@ namespace Nito.ConnectedProperties
         {
             Contract.Requires(carrier != null);
 
-#if !SILVERLIGHT
-            return validCarrierTypes.GetOrAdd(carrier.GetType(), type => type.IsReferenceEquatable());
-#else
-            return carrier.GetType().IsReferenceEquatable();
-#endif
+            var type = carrier.GetType();
+            return validCarrierTypes.GetOrAdd(type, () => type.IsReferenceEquatable());
         }
 
         /// <summary>
