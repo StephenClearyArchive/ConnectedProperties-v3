@@ -8,7 +8,7 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
     public sealed partial class DefaultEnlightenmentProvider
     {
         /// <summary>
-        /// The default concurrent dictionary enlightenment.
+        /// The default concurrent dictionary enlightenment, which uses a regular dictionary protected by a lock.
         /// </summary>
         public sealed class ConcurrentDictionaryEnlightenment : IConcurrentDictionaryEnlightenment
         {
@@ -28,9 +28,15 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
                         TValue ret;
                         if (_dictionary.TryGetValue(key, out ret))
                             return ret;
-                        ret = createCallback();
-                        _dictionary.Add(key, ret);
-                        return ret;
+                    }
+                    TValue created = createCallback();
+                    lock (_dictionary)
+                    {
+                        TValue ret;
+                        if (_dictionary.TryGetValue(key, out ret))
+                            return ret;
+                        _dictionary.Add(key, created);
+                        return created;
                     }
                 }
 
