@@ -1,6 +1,4 @@
-﻿// <copyright file="NamedConnectedPropertiesUnitTests.cs" company="Nito Programs">
-//     Copyright (c) 2012 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2012-2013 Nito Programs.
 
 using System;
 using System.Text;
@@ -13,6 +11,7 @@ using Nito.ConnectedProperties.Named;
 
 namespace UnitTests
 {
+#pragma warning disable 618
     [TestClass]
     public class NamedConnectedPropertiesUnitTests
     {
@@ -266,4 +265,5 @@ namespace UnitTests
             Assert.AreEqual(13, carrier.GetConnectedProperty("Name").Get());
         }
     }
+#pragma warning restore 618
 }

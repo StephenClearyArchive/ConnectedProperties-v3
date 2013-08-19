@@ -1,6 +1,4 @@
-﻿// <copyright file="ExplicitConnectedPropertiesUnitTests.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 using System;
 using System.Text;
@@ -12,6 +10,7 @@ using Nito.ConnectedProperties.Explicit;
 
 namespace UnitTests
 {
+#pragma warning disable 618
     [TestClass]
     public class ExplicitConnectedPropertiesUnitTests
     {
@@ -308,4 +307,5 @@ namespace UnitTests
             Assert.IsNotNull(propertyDefinition.TryGetProperty(carrier, true));
         }
     }
+#pragma warning restore 618
 }

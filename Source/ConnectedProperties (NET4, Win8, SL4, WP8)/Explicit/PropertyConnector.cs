@@ -1,6 +1,4 @@
-﻿// <copyright file="PropertyConnector.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 namespace Nito.ConnectedProperties.Explicit
 {
@@ -13,6 +11,7 @@ namespace Nito.ConnectedProperties.Explicit
     /// <typeparam name="TCarrier">The type of carrier objects to which the property may be connected. This must be a reference type. This may be <see cref="Object"/> to allow this property to connect to any type of object.</typeparam>
     /// <typeparam name="TValue">The property type.</typeparam>
     [ContractClass(typeof(PropertyConnectorContracts<,>))]
+    [Obsolete("Use Nito.ConnectedProperties.PropertyConnector instead.")]
     public interface IPropertyConnector<in TCarrier, TValue>
         where TCarrier : class
     {
@@ -50,6 +49,7 @@ namespace Nito.ConnectedProperties.Explicit
     }
 
     [ContractClassFor(typeof(IPropertyConnector<,>))]
+    [Obsolete]
     internal abstract class PropertyConnectorContracts<TCarrier, TValue> : IPropertyConnector<TCarrier, TValue>
         where TCarrier : class
     {
@@ -85,26 +85,27 @@ namespace Nito.ConnectedProperties.Explicit
     /// </summary>
     /// <typeparam name="TCarrier">The type of carrier objects to which the property may be connected. This must be a reference type. This may be <see cref="Object"/> to allow this property to connect to any type of object.</typeparam>
     /// <typeparam name="TValue">The property type.</typeparam>
+    [Obsolete("Use Nito.ConnectedProperties.PropertyConnector instead.")]
     public sealed class PropertyConnector<TCarrier, TValue> : IPropertyConnector<TCarrier, TValue>
         where TCarrier : class
     {
         /// <summary>
-        /// The underlying property store.
+        /// The underlying property connector.
         /// </summary>
-        private readonly IPropertyStore<TCarrier, TValue> store;
+        private readonly PropertyConnector _connector;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyConnector&lt;TCarrier, TValue&gt;"/> class.
         /// </summary>
         public PropertyConnector()
         {
-            this.store = PropertyStoreUtil.Create<TCarrier, TValue>();
+            _connector = new PropertyConnector();
         }
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-            Contract.Invariant(this.store != null);
+            Contract.Invariant(_connector != null);
         }
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace Nito.ConnectedProperties.Explicit
         /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
         public IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier)
         {
-            return this.TryGetProperty(carrier, false);
+            return TryGetProperty(carrier, bypassValidation: false);
         }
 
         /// <summary>
@@ -125,9 +126,7 @@ namespace Nito.ConnectedProperties.Explicit
         /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
         public IConnectibleProperty<TValue> TryGetProperty(TCarrier carrier, bool bypassValidation)
         {
-            if (!bypassValidation && !PropertyStoreUtil.TryVerify(carrier))
-                return null;
-            return new ConnectibleProperty<TCarrier, TValue>(this.store, carrier);
+            return ConnectibleProperty<TValue>.TryCastFrom(_connector.TryGet(carrier, string.Empty, bypassValidation));
         }
 
         /// <summary>
@@ -138,7 +137,7 @@ namespace Nito.ConnectedProperties.Explicit
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
         public IConnectibleProperty<TValue> GetProperty(TCarrier carrier)
         {
-            return this.GetProperty(carrier, false);
+            return GetProperty(carrier, bypassValidation: false);
         }
 
         /// <summary>
@@ -150,9 +149,7 @@ namespace Nito.ConnectedProperties.Explicit
         /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
         public IConnectibleProperty<TValue> GetProperty(TCarrier carrier, bool bypassValidation)
         {
-            if (!bypassValidation)
-                PropertyStoreUtil.Verify(carrier);
-            return new ConnectibleProperty<TCarrier, TValue>(this.store, carrier);
+            return _connector.Get(carrier, string.Empty, bypassValidation).Cast<TValue>();
         }
     }
 }

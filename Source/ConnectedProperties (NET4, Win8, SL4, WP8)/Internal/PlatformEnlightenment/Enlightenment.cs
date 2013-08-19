@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2013 Nito Programs.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;

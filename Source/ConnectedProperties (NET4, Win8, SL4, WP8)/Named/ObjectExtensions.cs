@@ -1,6 +1,4 @@
-﻿// <copyright file="ObjectExtensions.cs" company="Nito Programs">
-//     Copyright (c) 2011-2013 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 namespace Nito.ConnectedProperties.Named
 {
@@ -14,16 +12,7 @@ namespace Nito.ConnectedProperties.Named
     /// </summary>
     public static class ObjectExtensions
     {
-        /// <summary>
-        /// The tag type for named properties.
-        /// </summary>
-        private sealed class NamedPropertyTag { }
-
-        /// <summary>
-        /// The tag type for named properties within a namespace tag.
-        /// </summary>
-        /// <typeparam name="T">The tag namespace.</typeparam>
-        private sealed class NamedPropertyTag<T> { }
+        private static readonly PropertyConnector Connector = new PropertyConnector();
 
         /// <summary>
         /// Gets a named connectible property for a specific carrier object, optionally bypassing carrier object validation. Throws <see cref="InvalidOperationException"/> if validation is not bypassed and the specified object cannot have connected properties.
@@ -33,12 +22,12 @@ namespace Nito.ConnectedProperties.Named
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Defaults to <c>false</c>.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get(carrier, name, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> GetConnectedProperty(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            var properties = carrier.GetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag>(bypassValidation).GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>());
-            return new DictionaryProperty<string, object>(properties, name);
+            return Connector.Get(carrier, name, bypassValidation);
         }
 
         /// <summary>
@@ -48,13 +37,11 @@ namespace Nito.ConnectedProperties.Named
         /// <param name="name">The name of the connectible property to retrieve.</param>
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Defaults to <c>false</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet(carrier, name, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            var implicitProperty = carrier.TryGetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag>(bypassValidation);
-            if (implicitProperty == null)
-                return null;
-            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>()), name);
+            return Connector.TryGet(carrier, name, bypassValidation);
         }
 
         /// <summary>
@@ -66,12 +53,12 @@ namespace Nito.ConnectedProperties.Named
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Defaults to <c>false</c>.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get<TTag>(carrier, name, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> GetConnectedProperty<TTag>(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            var properties = carrier.GetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation).GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>());
-            return new DictionaryProperty<string, object>(properties, name);
+            return Connector.Get<TTag>(carrier, name, bypassValidation);
         }
 
         /// <summary>
@@ -82,13 +69,11 @@ namespace Nito.ConnectedProperties.Named
         /// <param name="name">The name of the connectible property to retrieve.</param>
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Defaults to <c>false</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet<TTag>(carrier, name, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            var implicitProperty = carrier.TryGetConnectedProperty<IConcurrentDictionary<string, object>, NamedPropertyTag<TTag>>(bypassValidation);
-            if (implicitProperty == null)
-                return null;
-            return new DictionaryProperty<string, object>(implicitProperty.GetOrCreate(() => Enlightenment.ConcurrentDictionary.Create<string, object>()), name);
+            return Connector.TryGet<TTag>(carrier, name, bypassValidation);
         }
     }
 }

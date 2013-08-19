@@ -1,6 +1,4 @@
-﻿// <copyright file="AssemblyInfo.cs" company="Nito Programs">
-//     Copyright (c) 2011-2013 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 using System.Reflection;
 

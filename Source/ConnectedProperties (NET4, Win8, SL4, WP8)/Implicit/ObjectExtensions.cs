@@ -1,6 +1,4 @@
-﻿// <copyright file="ObjectExtensions.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 namespace Nito.ConnectedProperties.Implicit
 {
@@ -10,8 +8,11 @@ namespace Nito.ConnectedProperties.Implicit
     /// <summary>
     /// Extensions to allow accessing implicit connected properties from any reference object.
     /// </summary>
+    [Obsolete("Use ConnectibleProperty static methods instead.")]
     public static class ObjectExtensions
     {
+        private static readonly PropertyConnector Connector = new PropertyConnector();
+        
         /// <summary>
         /// Gets a connectible property for a specific carrier object, throwing <see cref="InvalidOperationException"/> if the specified object cannot have connected properties.
         /// </summary>
@@ -20,6 +21,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get<TTag>(carrier).Cast<TValue>() instead.")]
         public static IConnectibleProperty<TValue> GetConnectedProperty<TValue, TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
@@ -36,13 +38,12 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get<TTag>(carrier, bypassValidation).Cast<TValue>() instead.")]
         public static IConnectibleProperty<TValue> GetConnectedProperty<TValue, TTag>(this object carrier, bool bypassValidation)
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<TValue>>() != null);
-            if (!bypassValidation)
-                PropertyStoreUtil.Verify(carrier);
-            return ImplicitPropertyConnector<TValue, TTag>.Property(carrier);
+            return Connector.Get<TTag>(carrier, bypassValidation).Cast<TValue>();
         }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet<TTag>(carrier).Cast<TValue>() instead.")]
         public static IConnectibleProperty<TValue> TryGetConnectedProperty<TValue, TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
@@ -66,12 +68,11 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable unless validation is bypassed. May not be <c>null</c>.</param>
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet<TTag>(carrier, bypassValidation).Cast<TValue>() instead.")]
         public static IConnectibleProperty<TValue> TryGetConnectedProperty<TValue, TTag>(this object carrier, bool bypassValidation)
         {
             Contract.Requires(carrier != null);
-            if (!bypassValidation && !PropertyStoreUtil.TryVerify(carrier))
-                return null;
-            return ImplicitPropertyConnector<TValue, TTag>.Property(carrier);
+            return ConnectibleProperty<TValue>.TryCastFrom(Connector.TryGet<TTag>(carrier, bypassValidation));
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get<TTag>(carrier) instead.")]
         public static IConnectibleProperty<dynamic> GetConnectedProperty<TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
@@ -96,6 +98,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
         /// <returns>The connectible property.</returns>
         /// <exception cref="InvalidOperationException"><paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</exception>
+        [Obsolete("Use ConnectibleProperty.Get<TTag>(carrier, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> GetConnectedProperty<TTag>(this object carrier, bool bypassValidation)
         {
             Contract.Requires(carrier != null);
@@ -109,6 +112,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <typeparam name="TTag">A "tag" type used to distinguish different implicit connected properties.</typeparam>
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet<TTag>(carrier) instead.")]
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier)
         {
             Contract.Requires(carrier != null);
@@ -122,6 +126,7 @@ namespace Nito.ConnectedProperties.Implicit
         /// <param name="carrier">The carrier object for which to retrieve the connectible property. This object must be reference-equatable. May not be <c>null</c>.</param>
         /// <param name="bypassValidation">Whether to bypass carrier object validation. Normally, callers pass <c>true</c> for this parameter.</param>
         /// <returns>The connectible property, or <c>null</c> if <paramref name="bypassValidation"/> is <c>false</c> and <paramref name="carrier"/> may not have connected properties.</returns>
+        [Obsolete("Use ConnectibleProperty.TryGet<TTag>(carrier, bypassValidation) instead.")]
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier, bool bypassValidation)
         {
             Contract.Requires(carrier != null);
