@@ -21,6 +21,11 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
             {
                 private readonly System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue> _dictionary = new System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>();
 
+                public TValue AddOrUpdate(TKey key, Func<TValue> createCallback, Func<TValue, TValue> updateCallback)
+                {
+                    return _dictionary.AddOrUpdate(key, _ => createCallback(), (_, oldValue) => updateCallback(oldValue));
+                }
+
                 public TValue GetOrAdd(TKey key, Func<TValue> createCallback)
                 {
                     return _dictionary.GetOrAdd(key, _ => createCallback());
@@ -40,6 +45,11 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
                 public bool TryGet(TKey key, out TValue value)
                 {
                     return _dictionary.TryGetValue(key, out value);
+                }
+
+                public bool TryUpdate(TKey key, TValue value, TValue comparison)
+                {
+                    return _dictionary.TryUpdate(key, value, comparison);
                 }
             }
         }

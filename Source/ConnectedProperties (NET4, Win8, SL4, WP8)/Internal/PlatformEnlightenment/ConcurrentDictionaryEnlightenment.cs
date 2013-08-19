@@ -23,23 +23,41 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
             {
                 private readonly Dictionary<TKey, TValue> _dictionary = new Dictionary<TKey, TValue>();
 
-                public TValue GetOrAdd(TKey key, Func<TValue> createCallback)
+                public TValue AddOrUpdate(TKey key, Func<TValue> createCallback, Func<TValue, TValue> updateCallback)
+                {
+                    while (true)
+                    {
+                        var addResult = DoGetOrAdd(key, createCallback);
+                        if (addResult.Item2)
+                            return addResult.Item1;
+                        var newValue = updateCallback(addResult.Item1);
+                        if (TryUpdate(key, newValue, addResult.Item1))
+                            return newValue;
+                    }
+                }
+
+                private Tuple<TValue, bool> DoGetOrAdd(TKey key, Func<TValue> createCallback)
                 {
                     lock (_dictionary)
                     {
                         TValue ret;
                         if (_dictionary.TryGetValue(key, out ret))
-                            return ret;
+                            return Tuple.Create(ret, false);
                     }
                     TValue created = createCallback();
                     lock (_dictionary)
                     {
                         TValue ret;
                         if (_dictionary.TryGetValue(key, out ret))
-                            return ret;
+                            return Tuple.Create(ret, false);
                         _dictionary.Add(key, created);
-                        return created;
+                        return Tuple.Create(created, true);
                     }
+                }
+
+                public TValue GetOrAdd(TKey key, Func<TValue> createCallback)
+                {
+                    return DoGetOrAdd(key, createCallback).Item1;
                 }
 
                 public bool TryAdd(TKey key, TValue value)
@@ -66,6 +84,20 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
                     lock (_dictionary)
                     {
                         return _dictionary.TryGetValue(key, out value);
+                    }
+                }
+
+                public bool TryUpdate(TKey key, TValue value, TValue comparison)
+                {
+                    lock (_dictionary)
+                    {
+                        TValue comparand;
+                        if (!_dictionary.TryGetValue(key, out comparand))
+                            return false;
+                        if (!EqualityComparer<TValue>.Default.Equals(comparand, comparison))
+                            return false;
+                        _dictionary[key] = value;
+                        return true;
                     }
                 }
             }

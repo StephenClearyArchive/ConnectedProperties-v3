@@ -40,9 +40,19 @@ namespace Nito.ConnectedProperties
             return _dictionary.TryAdd(_key, value);
         }
 
+        public bool TryUpdate(T newValue, T comparisonValue)
+        {
+            return _dictionary.TryUpdate(_key, newValue, comparisonValue);
+        }
+
         public T GetOrCreate(Func<T> createCallback)
         {
             return (T)_dictionary.GetOrAdd(_key, () => createCallback());
+        }
+
+        public T CreateOrUpdate(Func<T> createCallback, Func<T, T> updateCallback)
+        {
+            return (T)_dictionary.AddOrUpdate(_key, () => createCallback(), oldValue => updateCallback((T)oldValue));
         }
 
         /// <summary>
@@ -94,18 +104,18 @@ namespace Nito.ConnectedProperties
             return GetOrCreate(() => connectValue);
         }
 
+        public T ConnectOrUpdate(T connectValue, Func<T, T> updateCallback)
+        {
+            return CreateOrUpdate(() => connectValue, updateCallback);
+        }
+
         /// <summary>
         /// Sets the value of the property, overwriting any existing value.
         /// </summary>
         /// <param name="value">The value to set.</param>
         public void Set(T value)
         {
-            while (true)
-            {
-                if (TryConnect(value))
-                    return;
-                TryDisconnect();
-            }
+            CreateOrUpdate(() => value, _ => value);
         }
 
         public ConnectibleProperty<TResult> Cast<TResult>()
