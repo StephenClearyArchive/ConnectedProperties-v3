@@ -100,6 +100,14 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
                         return true;
                     }
                 }
+
+                public IEnumerable<KeyValuePair<TKey, TValue>> Snapshot()
+                {
+                    lock (_dictionary)
+                    {
+                        return _dictionary.ToArray();
+                    }
+                }
             }
         }
     }
