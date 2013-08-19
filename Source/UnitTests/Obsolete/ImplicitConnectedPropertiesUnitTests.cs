@@ -1,6 +1,4 @@
-﻿// <copyright file="ImplicitConnectedPropertiesUnitTests.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 using System;
 using System.Text;
@@ -12,6 +10,7 @@ using Nito.ConnectedProperties.Implicit;
 
 namespace UnitTests
 {
+#pragma warning disable 618
     [TestClass]
     public class ImplicitConnectedPropertiesUnitTests
     {
@@ -297,4 +296,5 @@ namespace UnitTests
             Assert.AreEqual(17, carrier.GetConnectedProperty<dynamic, tag1>(true).Get());
         }
     }
+#pragma warning restore 618
 }

@@ -106,24 +106,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectibleProperty.cs" />
-    <Compile Include="ConnectiblePropertyExtensions.cs" />
-    <Compile Include="DictionaryProperty.cs" />
     <Compile Include="Explicit\PropertyConnector.cs" />
-    <Compile Include="Implicit\ImplicitPropertyConnector.cs" />
     <Compile Include="Implicit\ObjectExtensions.cs" />
+    <Compile Include="IConnectibleProperty %28Obsolete%29.cs" />
+    <Compile Include="ConnectiblePropertyExtensions %28Obsolete%29.cs" />
+    <Compile Include="PropertyConnector.Verification.cs" />
+    <Compile Include="PropertyConnector.PropertyStore.cs" />
+    <Compile Include="ConnectibleProperty %28of T%29.cs" />
+    <Compile Include="PropertyConnector.Names.cs" />
     <Compile Include="Internal\PlatformEnlightenment\ConcurrentDictionaryEnlightenment.cs" />
     <Compile Include="Internal\PlatformEnlightenment\DefaultEnlightenmentProvider.cs" />
     <Compile Include="Internal\PlatformEnlightenment\Enlightenment.cs" />
     <Compile Include="Internal\PlatformEnlightenment\IConcurrentDictionaryEnlightenment.cs" />
     <Compile Include="Internal\PlatformEnlightenment\IEnlightenmentProvider.cs" />
     <Compile Include="Named\ObjectExtensions.cs" />
+    <Compile Include="PropertyConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
-    <Compile Include="PropertyStore.cs" />
-    <Compile Include="PropertyStoreForReferenceTypes.cs" />
-    <Compile Include="PropertyStoreForValueTypes.cs" />
-    <Compile Include="PropertyStoreUtil.cs" />
-    <Compile Include="ReferenceEquatable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

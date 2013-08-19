@@ -1,6 +1,4 @@
-﻿// <copyright file="ConnectiblePropertyExtensions.cs" company="Nito Programs">
-//     Copyright (c) 2011 Nito Programs.
-// </copyright>
+﻿// Copyright (c) 2011-2013 Nito Programs.
 
 namespace Nito.ConnectedProperties
 {
@@ -10,6 +8,7 @@ namespace Nito.ConnectedProperties
     /// <summary>
     /// Provides convenience methods for connectible properties.
     /// </summary>
+    [Obsolete("Use Nito.ConnectedProperties.ConnectibleProperty instead.")]
     public static class ConnectiblePropertyExtensions
     {
         /// <summary>

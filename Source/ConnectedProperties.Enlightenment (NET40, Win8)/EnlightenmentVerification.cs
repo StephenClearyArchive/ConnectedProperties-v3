@@ -1,4 +1,6 @@
-﻿using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
+﻿// Copyright (c) 2013 Nito Programs.
+
+using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
