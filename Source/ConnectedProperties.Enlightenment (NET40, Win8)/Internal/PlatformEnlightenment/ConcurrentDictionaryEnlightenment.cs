@@ -51,6 +51,11 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
                 {
                     return _dictionary.TryUpdate(key, value, comparison);
                 }
+
+                public IEnumerable<KeyValuePair<TKey, TValue>> Snapshot()
+                {
+                    return _dictionary;
+                }
             }
         }
     }

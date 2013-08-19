@@ -20,5 +20,6 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         bool TryRemove(TKey key);
         bool TryGet(TKey key, out TValue value);
         bool TryUpdate(TKey key, TValue value, TValue comparison);
+        IEnumerable<KeyValuePair<TKey, TValue>> Snapshot();
     }
 }

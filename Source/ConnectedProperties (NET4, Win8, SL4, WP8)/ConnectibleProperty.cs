@@ -9,7 +9,6 @@ namespace Nito.ConnectedProperties
 {
     public static class ConnectibleProperty
     {
-        // TODO: CopyAll
         public static ConnectibleProperty<dynamic> Get(object carrier, string name, bool bypassValidation = false)
         {
             return PropertyConnector.Default.Get(carrier, name, bypassValidation);
