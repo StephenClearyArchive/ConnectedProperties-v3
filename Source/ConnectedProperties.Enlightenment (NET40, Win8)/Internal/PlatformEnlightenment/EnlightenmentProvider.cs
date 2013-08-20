@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
 {
     /// <summary>
-    /// The platform enlightenment provider for .NET 4.5 and Windows 8.
+    /// The platform enlightenment provider for .NET 4.0 and Windows 8.
     /// </summary>
     public sealed partial class EnlightenmentProvider : IEnlightenmentProvider
     {

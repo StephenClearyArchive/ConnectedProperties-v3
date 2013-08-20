@@ -105,7 +105,6 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectibleProperty.cs" />
     <Compile Include="Explicit\PropertyConnector.cs" />
     <Compile Include="Implicit\ObjectExtensions.cs" />
     <Compile Include="IConnectibleProperty %28Obsolete%29.cs" />
