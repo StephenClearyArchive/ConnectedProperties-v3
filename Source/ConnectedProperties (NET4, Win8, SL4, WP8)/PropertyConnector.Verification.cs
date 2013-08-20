@@ -16,7 +16,7 @@ namespace Nito.ConnectedProperties
         /// <summary>
         /// A cache of valid carrier types.
         /// </summary>
-        private static IConcurrentDictionary<Type, bool> validCarrierTypes = Enlightenment.ConcurrentDictionary.Create<Type, bool>();
+        private static readonly IConcurrentDictionary<Type, bool> ValidCarrierTypes = Enlightenment.ConcurrentDictionary.Create<Type, bool>();
 
         /// <summary>
         /// Verifies the carrier object: it must be a reference type that uses reference equality. Returns <c>true</c> if the carrier object may have connected properties; <c>false</c> if the carrier object may not have connected properties.
@@ -28,7 +28,7 @@ namespace Nito.ConnectedProperties
             Contract.Requires(carrier != null);
 
             var type = carrier.GetType();
-            return validCarrierTypes.GetOrAdd(type, () => IsReferenceEquatable(type));
+            return ValidCarrierTypes.GetOrAdd(type, () => IsReferenceEquatable(type));
         }
 
         /// <summary>

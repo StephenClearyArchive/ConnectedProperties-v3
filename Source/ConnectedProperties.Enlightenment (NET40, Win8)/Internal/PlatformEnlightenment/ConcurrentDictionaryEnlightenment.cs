@@ -10,9 +10,12 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
 {
     partial class EnlightenmentProvider
     {
+        /// <summary>
+        /// A <see cref="IConcurrentDictionaryEnlightenment"/> that creates an actual <see cref="System.Collections.Concurrent.ConcurrentDictionary{TKey,TValue}"/>.
+        /// </summary>
         public sealed class ConcurrentDictionaryEnlightenment : IConcurrentDictionaryEnlightenment
         {
-            public IConcurrentDictionary<TKey, TValue> Create<TKey, TValue>()
+            IConcurrentDictionary<TKey, TValue> IConcurrentDictionaryEnlightenment.Create<TKey, TValue>()
             {
                 return new ConcurrentDictionary<TKey, TValue>();
             }

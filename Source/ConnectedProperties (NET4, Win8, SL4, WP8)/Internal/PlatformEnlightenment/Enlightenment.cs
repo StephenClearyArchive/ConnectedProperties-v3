@@ -19,6 +19,9 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         /// </summary>
         private static IEnlightenmentProvider _platform;
 
+        /// <summary>
+        /// Cached instance of the concurrent dictionary enlightenment provider.
+        /// </summary>
         private static IConcurrentDictionaryEnlightenment _concurrentDictionary;
 
         /// <summary>
