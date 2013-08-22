@@ -6,6 +6,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70AC4B94-780D-4E70-80A7-A5CE36A47794}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
+		Nito.ConnectedProperties.nuspec = Nito.ConnectedProperties.nuspec
 		Nito.ConnectedProperties.vsmdi = Nito.ConnectedProperties.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
