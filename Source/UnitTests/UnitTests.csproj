@@ -46,10 +46,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssertEx.cs" />
+    <Compile Include="ConnectedPropertiesUnitTests.cs" />
     <Compile Include="Obsolete\NamedConnectedPropertiesUnitTests.cs" />
     <Compile Include="Obsolete\ImplicitConnectedPropertiesUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Obsolete\ExplicitConnectedPropertiesUnitTests.cs" />
+    <Compile Include="PropertyConnectorUnitTests.cs" />
+    <Compile Include="PropertyIndependenceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConnectedProperties %28NET4, Win8, SL4, WP8%29\ConnectedProperties %28NET4, Win8, SL4, WP8%29.csproj">
