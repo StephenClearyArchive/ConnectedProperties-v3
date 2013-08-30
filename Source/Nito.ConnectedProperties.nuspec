@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>ConnectedProperties</id>
+    <id>Nito.ConnectedProperties</id>
     <version>3.0.0</version>
-    <title>Connected Properties (by Nito Programs)</title>
+    <title>Connected Properties</title>
     <authors>Stephen Cleary</authors>
     <owners>Stephen Cleary</owners>
     <summary>Connected Properties is an API to "attach" properties to (most) .NET objects at runtime. Connected property values are connected to a "carrier object" (any reference type that uses reference equality). All accesses to connected properties are thread-safe.</summary>
@@ -13,7 +13,7 @@
     <iconUrl>https://lh4.googleusercontent.com/-90uNoS8PsvM/Td5ey2VGonI/AAAAAAAAFDs/FhIQfrd_7V4/s800/ConnectedPropertiesLogo.PNG</iconUrl>
     <tags>property properties connect attach bind connected attached bound nito .net40 .net45 sl4 sl5 sl40</tags>
     <releaseNotes>
-      [3.0.0] Major API redesign. Added PCL support.
+      [3.0.0] Major API redesign. Added PCL support. Changed Nuget package id from "ConnectedProperties" to "Nito.ConnectedProperties".
       [2.0.0] Added named connected properties and removed strong-name signing.
       [1.3.1] Fixed NuGet package to include xmldoc files.
       [1.3.0] Added precondition checks to the "Release" build.
