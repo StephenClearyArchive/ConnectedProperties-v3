@@ -13,6 +13,7 @@ namespace Nito.ConnectedProperties.Named
     public static class ObjectExtensions
     {
         private static readonly PropertyConnector Connector = new PropertyConnector();
+        private static readonly string Unnamed = Guid.NewGuid().ToString("N");
 
         /// <summary>
         /// Gets a named connectible property for a specific carrier object, optionally bypassing carrier object validation. Throws <see cref="InvalidOperationException"/> if validation is not bypassed and the specified object cannot have connected properties.
@@ -27,7 +28,7 @@ namespace Nito.ConnectedProperties.Named
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            return Connector.Get(carrier, name, bypassValidation);
+            return Connector.Get(carrier, name ?? Unnamed, bypassValidation);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Nito.ConnectedProperties.Named
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            return Connector.TryGet(carrier, name, bypassValidation);
+            return Connector.TryGet(carrier, name ?? Unnamed, bypassValidation);
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Nito.ConnectedProperties.Named
         {
             Contract.Requires(carrier != null);
             Contract.Ensures(Contract.Result<IConnectibleProperty<dynamic>>() != null);
-            return Connector.Get<TTag>(carrier, name, bypassValidation);
+            return Connector.Get<TTag>(carrier, name ?? Unnamed, bypassValidation);
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Nito.ConnectedProperties.Named
         public static IConnectibleProperty<dynamic> TryGetConnectedProperty<TTag>(this object carrier, string name, bool bypassValidation = false)
         {
             Contract.Requires(carrier != null);
-            return Connector.TryGet<TTag>(carrier, name, bypassValidation);
+            return Connector.TryGet<TTag>(carrier, name ?? Unnamed, bypassValidation);
         }
     }
 }

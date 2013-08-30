@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,6 +30,7 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         /// </summary>
         private static IEnlightenmentProvider CreateProvider()
         {
+            Contract.Ensures(Contract.Result<IEnlightenmentProvider>() != null);
             var enlightenmentAssemblyName = new AssemblyName(typeof(IEnlightenmentProvider).Assembly.FullName)
             {
                 Name = "ConnectedProperties.Enlightenment",
@@ -46,6 +48,7 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         {
             get
             {
+                Contract.Ensures(Contract.Result<IEnlightenmentProvider>() != null);
                 if (_platform == null)
                     Interlocked.CompareExchange(ref _platform, CreateProvider(), null);
                 return _platform;
@@ -59,6 +62,7 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         {
             get
             {
+                Contract.Ensures(Contract.Result<IConcurrentDictionaryEnlightenment>() != null);
                 if (_concurrentDictionary == null)
                     Interlocked.CompareExchange(ref _concurrentDictionary, Platform.CreateEnlightenment<IConcurrentDictionaryEnlightenment>(), null);
                 return _concurrentDictionary;
