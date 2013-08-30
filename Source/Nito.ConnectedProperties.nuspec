@@ -20,6 +20,19 @@
       [1.2.0] Added bypassValidation overrides to allow non-reference-equatable carrier objects.
       [1.1.0] Removed code contract assemblies (due to a NuGet bug) and added source packages instead.
     </releaseNotes>
+    <references>
+      <group targetFramework="net40">
+        <reference file="ConnectedProperties.dll"/>
+        <reference file="ConnectedProperties.Enlightenment.dll"/>
+      </group>
+      <group targetFramework="win8">
+        <reference file="ConnectedProperties.dll"/>
+        <reference file="ConnectedProperties.Enlightenment.dll"/>
+      </group>
+      <group>
+        <reference file="ConnectedProperties.dll"/>
+      </group>
+    </references>
   </metadata>
   <files>
     <file src="**\*.cs" target="src" />
