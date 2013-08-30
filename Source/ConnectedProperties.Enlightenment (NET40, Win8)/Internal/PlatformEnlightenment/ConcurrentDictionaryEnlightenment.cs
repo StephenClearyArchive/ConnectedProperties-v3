@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
             private sealed class ConcurrentDictionary<TKey, TValue> : IConcurrentDictionary<TKey, TValue>
             {
                 private readonly System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue> _dictionary = new System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>();
+
+                [ContractInvariantMethod]
+                private void ObjectInvariant()
+                {
+                    Contract.Invariant(_dictionary != null);
+                }
 
                 public TValue AddOrUpdate(TKey key, Func<TValue> createCallback, Func<TValue, TValue> updateCallback)
                 {

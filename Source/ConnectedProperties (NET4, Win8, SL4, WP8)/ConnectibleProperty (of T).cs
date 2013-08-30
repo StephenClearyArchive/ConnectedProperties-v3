@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2011-2013 Nito Programs.
 
+using System.Diagnostics.Contracts;
 using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Nito.ConnectedProperties
@@ -37,8 +37,17 @@ namespace Nito.ConnectedProperties
         /// <param name="key">The key for this particular property.</param>
         internal ConnectibleProperty(IConcurrentDictionary<string, object> dictionary, string key)
         {
+            Contract.Requires(dictionary != null);
+            Contract.Requires(key != null);
             _dictionary = dictionary;
             _key = key;
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(_dictionary != null);
+            Contract.Invariant(_key != null);
         }
 
         /// <summary>
@@ -87,7 +96,13 @@ namespace Nito.ConnectedProperties
         /// <returns>The value of the property.</returns>
         public T GetOrCreate(Func<T> createCallback)
         {
+            Contract.Requires(createCallback != null);
             return (T)_dictionary.GetOrAdd(_key, () => createCallback());
+        }
+
+        T IConnectibleProperty<T>.GetOrCreate(Func<T> createCallback)
+        {
+            return GetOrCreate(createCallback);
         }
 
         /// <summary>
@@ -97,6 +112,8 @@ namespace Nito.ConnectedProperties
         /// <param name="updateCallback">The delegate invoked to update the value if the property is connected.</param>
         public T CreateOrUpdate(Func<T> createCallback, Func<T, T> updateCallback)
         {
+            Contract.Requires(createCallback != null);
+            Contract.Requires(updateCallback != null);
             return (T)_dictionary.AddOrUpdate(_key, () => createCallback(), oldValue => updateCallback((T)oldValue));
         }
 
@@ -148,6 +165,7 @@ namespace Nito.ConnectedProperties
         /// <param name="updateCallback">The delegate invoked to update the value if the property is connected.</param>
         public T ConnectOrUpdate(T connectValue, Func<T, T> updateCallback)
         {
+            Contract.Requires(updateCallback != null);
             return CreateOrUpdate(() => connectValue, updateCallback);
         }
 
@@ -166,11 +184,12 @@ namespace Nito.ConnectedProperties
         /// <typeparam name="TResult">The type of the property value.</typeparam>
         public ConnectibleProperty<TResult> Cast<TResult>()
         {
+            Contract.Ensures(Contract.Result<ConnectibleProperty<TResult>>() != null);
             return new ConnectibleProperty<TResult>(_dictionary, _key);
         }
 
         /// <summary>
-        /// Creates a new instance that casts the property value from a specified type.
+        /// Creates a new instance that casts the property value from a specified type. Returns <c>null</c> if the source instance is <c>null</c>.
         /// </summary>
         /// <typeparam name="TSource">The original type of the property value.</typeparam>
         /// <param name="source">The source instance. This may be <c>null</c>.</param>

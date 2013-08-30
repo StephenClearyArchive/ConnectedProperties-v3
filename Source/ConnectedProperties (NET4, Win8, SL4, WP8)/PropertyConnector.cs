@@ -1,10 +1,9 @@
 ﻿// Copyright (c) 2011-2013 Nito Programs.
 
-using Nito.ConnectedProperties.Internal.PlatformEnlightenment;
+using System.Diagnostics.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Nito.ConnectedProperties
@@ -27,10 +26,24 @@ namespace Nito.ConnectedProperties
             _propertyStore = new PropertyStore();
         }
 
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(_propertyStore != null);
+        }
+
         /// <summary>
         /// Gets the default collection of connectible properties.
         /// </summary>
-        public static PropertyConnector Default { get { return _default; } }
+        public static PropertyConnector Default
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<PropertyConnector>() != null);
+                return _default;
+            }
+        }
+
         private static readonly PropertyConnector _default = new PropertyConnector();
 
         /// <summary>
@@ -41,6 +54,9 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> Get(object carrier, string name, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
+            Contract.Requires(name != null);
+            Contract.Ensures(Contract.Result<ConnectibleProperty<dynamic>>() != null);
             return Get<Untagged>(carrier, name, bypassValidation);
         }
 
@@ -52,6 +68,8 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> TryGet(object carrier, string name, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
+            Contract.Requires(name != null);
             return TryGet<Untagged>(carrier, name, bypassValidation);
         }
 
@@ -63,6 +81,8 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> Get<TTag>(object carrier, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
+            Contract.Ensures(Contract.Result<ConnectibleProperty<dynamic>>() != null);
             return Get<TTag>(carrier, Unnamed, bypassValidation);
         }
 
@@ -74,6 +94,7 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> TryGet<TTag>(object carrier, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
             return TryGet<TTag>(carrier, Unnamed, bypassValidation);
         }
 
@@ -86,6 +107,9 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> Get<TTag>(object carrier, string name, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
+            Contract.Requires(name != null);
+            Contract.Ensures(Contract.Result<ConnectibleProperty<dynamic>>() != null);
             if (!bypassValidation && !TryVerify(carrier))
                 throw ValidationException(carrier);
             return TryGet<TTag>(carrier, name, bypassValidation: true);
@@ -100,6 +124,8 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public ConnectibleProperty<dynamic> TryGet<TTag>(object carrier, string name, bool bypassValidation = false)
         {
+            Contract.Requires(carrier != null);
+            Contract.Requires(name != null);
             if (!bypassValidation && !TryVerify(carrier))
                 return null;
             var dictionary = _propertyStore.Get(carrier);
@@ -114,6 +140,8 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public void CopyAll(object carrierFrom, object carrierTo, bool bypassValidation = false)
         {
+            Contract.Requires(carrierFrom != null);
+            Contract.Requires(carrierTo != null);
             if (!bypassValidation)
             {
                 if (!TryVerify(carrierFrom))
@@ -132,6 +160,8 @@ namespace Nito.ConnectedProperties
         /// <param name="bypassValidation">An optional value indicating whether to bypass carrier object validation. The default is <c>false</c>.</param>
         public bool TryCopyAll(object carrierFrom, object carrierTo, bool bypassValidation = false)
         {
+            Contract.Requires(carrierFrom != null);
+            Contract.Requires(carrierTo != null);
             if (!bypassValidation && (!TryVerify(carrierFrom) || !TryVerify(carrierTo)))
                 return false;
             var properties = _propertyStore.Get(carrierFrom).Snapshot();
@@ -149,6 +179,8 @@ namespace Nito.ConnectedProperties
         /// <param name="carrier">The carrier object.</param>
         private static Exception ValidationException(object carrier)
         {
+            Contract.Requires(carrier != null);
+            Contract.Ensures(Contract.Result<Exception>() != null);
             return new InvalidOperationException("Object of type \"" + carrier.GetType() + "\" may not have connected properties. Only reference types that use reference equality may have connected properties.");
         }
     }

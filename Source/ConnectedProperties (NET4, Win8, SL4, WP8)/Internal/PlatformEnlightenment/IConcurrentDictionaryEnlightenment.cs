@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
     /// <summary>
     /// An enlightenment that is a factory for concurrent dictionaries.
     /// </summary>
+    [ContractClass(typeof(ConcurrentDictionaryEnlightenmentContracts))]
     public interface IConcurrentDictionaryEnlightenment
     {
         /// <summary>
@@ -20,11 +22,22 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         IConcurrentDictionary<TKey, TValue> Create<TKey, TValue>();
     }
 
+    [ContractClassFor(typeof(IConcurrentDictionaryEnlightenment))]
+    internal abstract class ConcurrentDictionaryEnlightenmentContracts : IConcurrentDictionaryEnlightenment
+    {
+        public IConcurrentDictionary<TKey, TValue> Create<TKey, TValue>()
+        {
+            Contract.Ensures(Contract.Result<IConcurrentDictionary<TKey, TValue>>() != null);
+            return null;
+        }
+    }
+
     /// <summary>
     /// A portable interface for a concurrent dictionary.
     /// </summary>
     /// <typeparam name="TKey">The type of the keys.</typeparam>
     /// <typeparam name="TValue">The type of the values.</typeparam>
+    [ContractClass(typeof(ConcurrentDictionaryContracts<,>))]
     public interface IConcurrentDictionary<TKey, TValue>
     {
         /// <summary>
@@ -74,5 +87,49 @@ namespace Nito.ConnectedProperties.Internal.PlatformEnlightenment
         /// Gets a snapshot of all the keys and values in this dictionary.
         /// </summary>
         IEnumerable<KeyValuePair<TKey, TValue>> Snapshot();
+    }
+
+    [ContractClassFor(typeof(IConcurrentDictionary<,>))]
+    internal abstract class ConcurrentDictionaryContracts<TKey, TValue> : IConcurrentDictionary<TKey, TValue>
+    {
+        public TValue AddOrUpdate(TKey key, Func<TValue> createCallback, Func<TValue, TValue> updateCallback)
+        {
+            Contract.Requires(createCallback != null);
+            Contract.Requires(updateCallback != null);
+            return default(TValue);
+        }
+
+        public TValue GetOrAdd(TKey key, Func<TValue> createCallback)
+        {
+            Contract.Requires(createCallback != null);
+            return default(TValue);
+        }
+
+        public bool TryAdd(TKey key, TValue value)
+        {
+            return false;
+        }
+
+        public bool TryRemove(TKey key)
+        {
+            return false;
+        }
+
+        public bool TryGet(TKey key, out TValue value)
+        {
+            value = default(TValue);
+            return false;
+        }
+
+        public bool TryUpdate(TKey key, TValue value, TValue comparison)
+        {
+            return false;
+        }
+
+        public IEnumerable<KeyValuePair<TKey, TValue>> Snapshot()
+        {
+            Contract.Ensures(Contract.Result<IEnumerable<KeyValuePair<TKey, TValue>>>() != null);
+            return null;
+        }
     }
 }
