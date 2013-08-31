@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2011-2013 Nito Programs.
 
 using System;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -305,5 +306,180 @@ namespace UnitTests
             ConnectibleProperty<dynamic> source = null;
             Assert.IsNull(ConnectibleProperty<string>.TryCastFrom(source));
         }
+
+#if DEBUG
+#warning Skipping some unit tests due to DEBUG; build in Release to run all unit tests.
+#else
+        [TestMethod]
+        public void Property_WhenCarrierIsAlive_IsNotCollected()
+        {
+            // A "dictionary mapping" with weak value references will not pass this test.
+            var name = Guid.NewGuid().ToString("N");
+            var carrier = new object();
+            var value = new object();
+            var valueRef = new WeakReference(value);
+            PropertyConnector.Default.Get(carrier, name).Set(value);
+            GC.Collect();
+            Assert.IsTrue(valueRef.IsAlive);
+            GC.KeepAlive(carrier);
+        }
+
+        [TestMethod]
+        public void Property_WhenCarrierIsCollected_IsCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var carrier = new object();
+            var carrierRef = new WeakReference(carrier);
+            var value = new object();
+            var valueRef = new WeakReference(value);
+            PropertyConnector.Default.Get(carrier, name).Set(value);
+            GC.Collect();
+            Assert.IsFalse(carrierRef.IsAlive);
+            Assert.IsFalse(valueRef.IsAlive);
+        }
+
+        [TestMethod]
+        public void Property_ReferencingCarrier_WhenCarrierIsCollected_IsCollected()
+        {
+            // A "dictionary mapping" with strong value references will not pass this test.
+            var name = Guid.NewGuid().ToString("N");
+            var carrier = new object();
+            var carrierRef = new WeakReference(carrier);
+            Func<int> value = carrier.GetHashCode;
+            var valueRef = new WeakReference(value);
+            PropertyConnector.Default.Get(carrier, name).Set(value);
+            GC.Collect();
+            Assert.IsFalse(carrierRef.IsAlive);
+            Assert.IsFalse(valueRef.IsAlive);
+        }
+        
+        [TestMethod]
+        public void Properties_CrossReferencingCarriers_WhenCarriersAreCollected_AreCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var carrier1 = new object();
+            var carrierRef1 = new WeakReference(carrier1);
+            var carrier2 = new object();
+            var carrierRef2 = new WeakReference(carrier1);
+            Func<int> value1 = carrier2.GetHashCode;
+            var valueRef1 = new WeakReference(value1);
+            Func<int> value2 = carrier1.GetHashCode;
+            var valueRef2 = new WeakReference(value2);
+            PropertyConnector.Default.Get(carrier1, name).Set(value1);
+            PropertyConnector.Default.Get(carrier2, name).Set(value2);
+            GC.Collect();
+            Assert.IsFalse(carrierRef1.IsAlive);
+            Assert.IsFalse(valueRef1.IsAlive);
+            Assert.IsFalse(carrierRef2.IsAlive);
+            Assert.IsFalse(valueRef2.IsAlive);
+        }
+
+        [TestMethod]
+        public void Properties_CrossReferencingCarriers_WhenOnePropertyRemainsAlive_AreNotCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var carrier1 = new object();
+            var carrierRef1 = new WeakReference(carrier1);
+            var carrier2 = new object();
+            var carrierRef2 = new WeakReference(carrier1);
+            Func<int> value1 = carrier2.GetHashCode;
+            var valueRef1 = new WeakReference(value1);
+            Func<int> value2 = carrier1.GetHashCode;
+            var valueRef2 = new WeakReference(value2);
+            PropertyConnector.Default.Get(carrier1, name).Set(value1);
+            PropertyConnector.Default.Get(carrier2, name).Set(value2);
+            GC.Collect();
+            Assert.IsTrue(carrierRef1.IsAlive);
+            Assert.IsTrue(valueRef1.IsAlive);
+            Assert.IsTrue(carrierRef2.IsAlive);
+            Assert.IsTrue(valueRef2.IsAlive);
+            GC.KeepAlive(value1);
+        }
+
+        [TestMethod]
+        public void Properties_CrossReferencingCarriersAcrossConnectors_WhenCarriersAreCollected_AreCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var other = new PropertyConnector();
+            var carrier1 = new object();
+            var carrierRef1 = new WeakReference(carrier1);
+            var carrier2 = new object();
+            var carrierRef2 = new WeakReference(carrier1);
+            Func<int> value1 = carrier2.GetHashCode;
+            var valueRef1 = new WeakReference(value1);
+            Func<int> value2 = carrier1.GetHashCode;
+            var valueRef2 = new WeakReference(value2);
+            PropertyConnector.Default.Get(carrier1, name).Set(value1);
+            other.Get(carrier2, name).Set(value2);
+            GC.Collect();
+            Assert.IsFalse(carrierRef1.IsAlive);
+            Assert.IsFalse(valueRef1.IsAlive);
+            Assert.IsFalse(carrierRef2.IsAlive);
+            Assert.IsFalse(valueRef2.IsAlive);
+        }
+
+        [TestMethod]
+        public void Properties_CrossReferencingCarriersAcrossConnectors_WhenOnePropertyRemainsAlive_AreNotCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var other = new PropertyConnector();
+            var carrier1 = new object();
+            var carrierRef1 = new WeakReference(carrier1);
+            var carrier2 = new object();
+            var carrierRef2 = new WeakReference(carrier1);
+            Func<int> value1 = carrier2.GetHashCode;
+            var valueRef1 = new WeakReference(value1);
+            Func<int> value2 = carrier1.GetHashCode;
+            var valueRef2 = new WeakReference(value2);
+            PropertyConnector.Default.Get(carrier1, name).Set(value1);
+            other.Get(carrier2, name).Set(value2);
+            GC.Collect();
+            Assert.IsTrue(carrierRef1.IsAlive);
+            Assert.IsTrue(valueRef1.IsAlive);
+            Assert.IsTrue(carrierRef2.IsAlive);
+            Assert.IsTrue(valueRef2.IsAlive);
+            GC.KeepAlive(value1);
+        }
+
+        [TestMethod]
+        public void Property_WhenConnectorIsCollected_IsCollected()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var connector = new PropertyConnector();
+            var carrier = new object();
+            var value = new object();
+            var valueRef = new WeakReference(value);
+            connector.Get(carrier, name).Set(value);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            Assert.IsFalse(valueRef.IsAlive);
+            GC.KeepAlive(carrier);
+        }
+
+        [TestMethod]
+        public void Property_ReferencingConnector_ActsAsStrongReference()
+        {
+            var name = Guid.NewGuid().ToString("N");
+            var connector = new PropertyConnector();
+            var connectorRef = new WeakReference(connector);
+            var carrier = new object();
+            Func<int> value = connector.GetHashCode;
+            var valueRef = new WeakReference(value);
+            connector.Get(carrier, name).Set(value);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            Assert.IsTrue(valueRef.IsAlive);
+            Assert.IsTrue(connectorRef.IsAlive);
+            GC.KeepAlive(carrier);
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            Assert.IsFalse(valueRef.IsAlive);
+            Assert.IsFalse(connectorRef.IsAlive);
+        }
+#endif
     }
 }
