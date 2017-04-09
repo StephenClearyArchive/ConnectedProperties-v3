@@ -1,0 +1,7 @@
+! Concept: Exact type
+
+The exact type of an instance is the actual type of that instance. In other words, the exact type of an instance is the most-derived type of that instance.
+
+The exact type of any instance may be determined by calling {{GetType}} on that instance.
+
+Note that for any variable {{T x}}, the exact type is {{x.GetType()}}, which may not be the same as {{T}}.
