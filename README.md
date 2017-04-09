@@ -43,4 +43,4 @@ class Program
 
 Note that the lifetime of the connected property is exactly as if it was a real property of the object, and the lifetime of the object is not changed in any way (even if the property refers to the object). Connected properties are a true [ephemeron implementation](http://en.wikipedia.org/wiki/Ephemeron) for .NET.
 
-See the [documentation](doc/Home.md) for all kinds of fun details.
+See the [documentation](doc/Documentation.md) for all kinds of fun details.
