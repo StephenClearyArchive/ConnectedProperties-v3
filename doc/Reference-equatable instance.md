@@ -1,0 +1,7 @@
+# Concept: Reference-equatable instance
+
+A reference-equatable instance is any object whose [exact type](Exact-type) is a [reference-equatable type](Reference-equatable-type).
+
+In other words, it is an object that uses reference equality, not value equality.
+
+It is possible to have a variable of a reference-equatable type that refers to a non-reference-equatable instance. If a {{Base}} class uses reference equality, but a {{Derived}} class uses value equality, then the variable {{Base x = new Derived()}} would be a reference-equatable type but a non-reference-equatable instance.
